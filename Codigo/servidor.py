@@ -19,6 +19,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         <body>
             <h1>Hola desde un servidor Python</h1>
             <p>Este es un servidor simple que responde a solicitudes GET.</p>
+            <img src='https://www.bing.com/images/search?view=detailV2&ccid=BWSttsVT&id=522EBBD2EAA19AE6937345446995C0DB8AB7B96B&thid=OIP.BWSttsVTNtcZucm62WBm-gHaE6&mediaurl=https%3a%2f%2fwww.nationalgeographic.com.es%2fmedio%2f2022%2f09%2f21%2fistock-1356246190_37d5212c_2000x1328.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.0564adb6c55336d719b9c9bad96066fa%3frik%3da7m3itvAlWlERQ%26pid%3dImgRaw%26r%3d0&exph=1328&expw=2000&q=lince&simid=608031125148140297&FORM=IRPRST&ck=6391AAF815AED292585E925ADA90289B&selectedIndex=6&itb=0&ajaxhist=0&ajaxserp=0'> 
             <p>Web del sAPIens.</p>
         </body>
         </html>"""
