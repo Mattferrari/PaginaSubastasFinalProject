@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>Formulario de Registro</title>
+    <style>
+        label {
+          color: rgb(0, 0, 0); /* Cambia el color del texto a azul */
+          font-size: 16px; /* Cambia el tamaño del texto */
+        }
+        button {
+          color: white;
+          background-color: rgb(0, 0, 0); /* Cambia el fondo del botón */
+          border: none;
+          padding: 10px 15px;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        button:hover {
+          background-color: darkblue; /* Cambia el color cuando pasas el mouse */
+        }
+      </style>
+  </head>
+  <body>
+    <header>
+      <h1>Formulario de registro</h1>
+    </header>
+    <main>
+      <h1>DEFINA LOS SIGUIENTES CAMPOS</h1>
+      <p><u>Por favor, rellena los siguientes datos para registrarse en la base de datos</u></p>
+      <form>
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <br>
+        <label for="username">Usuario:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <br>
+        <label for="email">Correo electrónico:</label>
+        <input type="text" id="email" name="email" required>
+        <br>
+        <br>
+        <label for="confirmation">Confirma Correo:</label>
+        <input type="text" id="confirmation" name="confirmation" required>
+        <br>
+        <br>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+        <hr>
+        <button type="submit">Enviar</button>
+        <button type="submit">Limpiar</button>
+        <br>
+        <br>
+        <a href="LogIn.html" class="boton-volver">
+            <img src="../imgs/volver.png" height="30" width="30">
+        </a>
+        
+      </form>
+    </main>
+    <br>
+    <footer>Creado por Matteo Ferrari - 45**2</footer>
+    <br>
+    <img src="https://www.footballdatabase.eu/images/photos/players/2006-2007/a_1/1459.jpg" height="100" width="100">
+  </body>
+</html>
