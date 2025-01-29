@@ -1,25 +1,9 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <title>Formulario de Registro</title>
-    <style>
-        label {
-          color: rgb(0, 0, 0); /* Cambia el color del texto a azul */
-          font-size: 16px; /* Cambia el tamaño del texto */
-        }
-        button {
-          color: white;
-          background-color: rgb(0, 0, 0); /* Cambia el fondo del botón */
-          border: none;
-          padding: 10px 15px;
-          border-radius: 5px;
-          cursor: pointer;
-        }
-        button:hover {
-          background-color: darkblue; /* Cambia el color cuando pasas el mouse */
-        }
-      </style>
+        <link rel="stylesheet" href="style.css" type="text/css">
   </head>
   <body>
     <header>
@@ -30,26 +14,26 @@
       <p><u>Por favor, rellena los siguientes datos para registrarse en la base de datos</u></p>
       <form>
         <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" required placeholder="Matteo">
         <br>
         <br>
         <label for="username">Usuario:</label>
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="username" name="username" required placeholder="matteofermar">
         <br>
         <br>
         <label for="email">Correo electrónico:</label>
-        <input type="text" id="email" name="email" required>
+        <input type="text" id="email" name="email" required placeholder="matteofermar@gmail.com">
         <br>
         <br>
         <label for="confirmation">Confirma Correo:</label>
-        <input type="text" id="confirmation" name="confirmation" required>
+        <input type="text" id="confirmation" name="confirmation" required placeholder="matteofermar@gmail.com">
         <br>
         <br>
         <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password" required placeholder="adcbnekc1263">
         <hr>
         <button type="submit">Enviar</button>
-        <button type="submit">Limpiar</button>
+        <button type="reset">Limpiar</button>
         <br>
         <br>
         <a href="LogIn.html" class="boton-volver">
@@ -59,7 +43,7 @@
       </form>
     </main>
     <br>
-    <footer>Creado por Matteo Ferrari - 45**2</footer>
+    <footer>Creado por Matteo Ferrari - 2025</footer>
     <br>
     <img src="https://www.footballdatabase.eu/images/photos/players/2006-2007/a_1/1459.jpg" height="100" width="100">
   </body>
