@@ -28,4 +28,4 @@ jobs:
    
     - name: Ejecutar pruebas 
       run: | 
-        python test_servidor.py
+        python Codigo/test_servidor.py
