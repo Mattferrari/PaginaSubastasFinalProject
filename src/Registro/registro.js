@@ -4,6 +4,17 @@ const alertDiv = document.querySelector(".PasswordRegistrationAlert");
 const lengthAlertDiv = document.querySelector(".PasswordLengthAlert");
 const minimumLen = 8
 
+const dateField = document.getElementById("datebirth");
+
+
+// establecer fecha máxima de registro:
+// prohibido para menores de edad
+const today = new Date();
+const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate()).toISOString().split('T')[0];
+const minDate = new Date(today.getFullYear() - 120, today.getMonth(), today.getDate());
+dateField.setAttribute('max', maxDate);
+dateField.setAttribute('min',minDate);
+
 
 /**
  * Returns a boolean that validates if both password and confirmation are equal.
