@@ -36,11 +36,16 @@
         <label for="confirmation">Confirma la contraseña:</label>
         <input type="password" id="confirmation" name="confirmation" required>
         <br>
-        <div class="PasswordRegistrationAlert">
+        <div class="PasswordRegistrationAlert hidden">
           <p>
-            <h6>The passwords are note the same</h6>
+              <h6>The passwords are not the same</h6>
           </p>
-        </div>
+      </div>
+      <div class="PasswordLengthAlert hidden">
+          <p>
+              <h6>The password must be at least 8 characters long</h6>
+          </p>
+      </div>
         <hr>
         <button type="submit" class="MoveButton">Enviar</button>
         <button type="reset" class="MoveButton">Limpiar</button>
@@ -56,6 +61,6 @@
     <footer>Creado por Matteo Ferrari - 2025</footer>
     <br>
     <img src="https://www.footballdatabase.eu/images/photos/players/2006-2007/a_1/1459.jpg" height="100" width="100">
-  
+    <script src="registro.js"></script>
   </body>
 </html>
