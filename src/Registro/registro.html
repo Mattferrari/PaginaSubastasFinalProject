@@ -7,45 +7,59 @@
   </head>
   <body>
     <header>
-      <h1>Formulario de registro</h1>
+      <div class="MenuOptions">
+        <ul class="ListaMenu">
+          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Principal</button></a></li>
+          <li class="MenuOption"><a href=""><button class="MenuButton">Mis subastas</button></a></li>
+          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Productos</button></a></li>
+          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Ranking</button></a></li>
+          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Amigos</button></a></li>
+          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Perfil</button></a></li>
+          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Sugerencias</button></a></li>
+          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Tutorial</button></a></li>
+          <li class="MenuOption"><a href="../LogIn/LogIn.html"><button class="MenuButton">Log In</button></a></li>
+          <li class="MenuOption"><a href="../Registro/registro.html"><button class="MenuButton">Registrarse</button></a></li>
+        </ul>
+      </div>
     </header>
     <main>
-      <h1>DEFINA LOS SIGUIENTES CAMPOS</h1>
-      <p><u>Por favor, rellena los siguientes datos para registrarse en la base de datos</u></p>
+      <div class="FormDiv">
+      <h1 class="FormTitle">Formulario de registro</h1>
       <form class="Formulario" method="post">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required placeholder="Matteo">
+        <label for="name" class="FormLabel">Nombre:</label>
         <br>
+        <input type="text" id="name" name="name" class="FormInput" required placeholder="Matteo">
         <br>
-        <label for="username">Usuario:</label>
-        <input type="text" id="username" name="username" required placeholder="matteofermar">
+        <label for="username" class="FormLabel">Usuario:</label>
         <br>
+        <input type="text" id="username" name="username" class="FormInput" required placeholder="matteofermar">
         <br>
-        <label for="email">Correo electrónico:</label>
-        <input type="text" id="email" name="email" required placeholder="matteofermar@gmail.com">
+        <label for="email" class="FormLabel">Correo electrónico:</label>
         <br>
+        <input type="text" id="email" name="email" class="FormInput" required placeholder="matteofermar@gmail.com">
         <br>
-        <label for="datebirth">Fecha de Nacimiento:</label>
-        <input type="date" id="datebirth" name="datebirth" required>
+        <label for="datebirth" class="FormLabel">Fecha de Nacimiento:</label>
         <br>
+        <input type="date" id="datebirth" name="datebirth" class="FormInput" required>
         <br>
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required>
+        <label for="password" class="FormLabel">Contraseña:</label>
         <br>
+        <input type="password" id="password" name="password" class="FormInput" required>
         <br>
-        <label for="confirmation">Confirma la contraseña:</label>
-        <input type="password" id="confirmation" name="confirmation" required>
+        <label for="confirmation" class="FormLabel">Confirma la contraseña:</label>
+        <br>
+        <input type="password" id="confirmation" name="confirmation" class="FormInput" required>
         <br>
         <div class="PasswordRegistrationAlert hidden">
-          <p>
-              <h6>The passwords are not the same</h6>
-          </p>
-      </div>
-      <div class="PasswordLengthAlert hidden">
-          <p>
-              <h6>The password must be at least 8 characters long</h6>
-          </p>
-      </div>
+            <p>
+                The passwords are not the same!
+            </p>
+        </div>
+        <div class="PasswordLengthAlert hidden">
+            <p>
+                The password must be at least 8 characters long
+            </p>
+        </div>
         <hr>
         <button type="submit" class="MoveButton">Enviar</button>
         <button type="reset" class="MoveButton">Limpiar</button>
@@ -57,11 +71,43 @@
         <br>
         <a href="../Menu.html">menú principal</a>
       </form>
+    </div>
     </main>
     <br>
-    <footer>Creado por Matteo Ferrari - 2025</footer>
-    <br>
-    <img src="https://www.footballdatabase.eu/images/photos/players/2006-2007/a_1/1459.jpg" height="100" width="100">
+    <footer>
+      <div class="container">
+      <h2 class="footerTitle">CONTÁCTANOS</h2>
+      
+      <div class="subcontainer">
+        <div class="footerInfo">
+          <img src="../../imgs/perfilLogo.avif" alt="" class="perfilLogo">
+          <ul class="footerList">
+            <li><a href="" class="footerLink">Matteo Ferrari Marín</a></li>
+            <br>
+            <li><a href="" class="footerLink">Santiago Urtiaga Pérez</a></li>
+          </ul>
+        </div>
+
+        <div class="footerInfo">
+          <img src="../../imgs/InstagramLogo.png" alt="" class="instaLogo">
+          <ul class="footerList">
+            <li><a href="https://www.instagram.com/" class="footerLink">Matteo Ferrari Marín</a></li>
+            <br>
+            <li><a href="" class="footerLink">Santiago Urtiaga Pérez</a></li>
+          </ul>
+        </div>
+
+        <div class="footerInfo">
+          <img src="../../imgs/logoX.net_.png" alt="" class="xLogo">
+          <ul class="footerList">
+            <li><a href="" class="footerLink">Matteo Ferrari Marín</a></li>
+            <br>
+            <li><a href="" class="footerLink">Santiago Urtiaga Pérez</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
     <script src="registro.js"></script>
   </body>
 </html>
