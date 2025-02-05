@@ -41,60 +41,67 @@
 
 
 /* FOOTER ------------------------------------------------------------------- */
+/* FOOTER ------------------------------------------------------------------- */
 .container{
     background-color: black;
     border-style: solid;
     width: 95%;
-    height: 250px;
+    height: 200px;
     margin-left: 2.5%;
     margin-top: 2.5%;
-}
-
-.subcontainer{
+  }
+  
+  .subcontainer{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     width: 100%;
     height: 100%;
-
-}
-
-.footerTitle{
+  
+  }
+  
+  .footerTitle{
     font-size: x-large;
     color: rgb(255, 255, 255);
     text-align: center;
-}
-
-.footerSubtitle{
+  }
+  
+  .footerSubtitle{
     font-size: large;
     color: white;
     text-align: center;
-}
-
-.instaLogo{
+  }
+  
+  .instaLogo{
     width: 89px;
     height: 50px;
-    margin-left: 45%;
-}
-
-.xLogo{
+  }
+  
+  .xLogo{
     width: 75px;
     height: 50px;
-    margin-left: 45%;
-}
-
-.perfilLogo {
+  }
+  
+  .perfilLogo {
     width: 50px;
     height: 50px;
-    margin-left: 45%;
-}
-
-.footerList{
+  }
+  
+  .footerList{
     text-align: center;
     color: rgb(0, 0, 0);
-}
-
-.footerLink {
+  }
+  
+  .footerLink {
     color: white;
     text-decoration: none;
-}
-
+  }
+  
+  .footerInfo p{
+    color:white;
+  }
+  
+  .footerInfo {
+    text-align: center;
+  }
+  
+  

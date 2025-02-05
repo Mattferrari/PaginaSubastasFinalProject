@@ -134,7 +134,7 @@ body {
   background-color: black;
   border-style: solid;
   width: 95%;
-  height: 250px;
+  height: 200px;
   margin-left: 2.5%;
   margin-top: 2.5%;
 }
@@ -162,19 +162,16 @@ body {
 .instaLogo{
   width: 89px;
   height: 50px;
-  margin-left: 45%;
 }
 
 .xLogo{
   width: 75px;
   height: 50px;
-  margin-left: 45%;
 }
 
 .perfilLogo {
   width: 50px;
   height: 50px;
-  margin-left: 45%;
 }
 
 .footerList{
@@ -185,5 +182,13 @@ body {
 .footerLink {
   color: white;
   text-decoration: none;
+}
+
+.footerInfo p{
+  color:white;
+}
+
+.footerInfo {
+  text-align: center;
 }
 
