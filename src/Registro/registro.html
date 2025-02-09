@@ -7,20 +7,30 @@
   </head>
   <body>
     <header>
-      <nav class="MenuOptions">
-        <ul class="ListaMenu">
-          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Principal</button></a></li>
-          <li class="MenuOption"><a href=""><button class="MenuButton">Mis subastas</button></a></li>
-          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Productos</button></a></li>
-          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Ranking</button></a></li>
-          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Amigos</button></a></li>
-          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Perfil</button></a></li>
-          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Sugerencias</button></a></li>
-          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Tutorial</button></a></li>
-          <li class="MenuOption"><a href="../LogIn/LogIn.html"><button class="MenuButton">Log In</button></a></li>
-          <li class="MenuOption"><a href="../Registro/registro.html"><button class="MenuButton">Registrarse</button></a></li>
-        </ul>
+      <!-- Primera barra de navegación -->
+      <nav class="nav-bar">
+        <div class="logo">sAPIens</div>
+
+        <div class="search-container">
+          <input type="text" placeholder="Buscar por producto, categoría, etc.">
+        </div>
+
+        <div class="auth-links">
+          <a href="../LogIn/LogIn.html"><button>Iniciar sesión</button></a>
+          <a href="../Registro/registro.html"><button>Registrarse</button></a>
+        </div>
       </nav>
+
+      <!-- Segunda barra de navegación -->
+      <nav class="menu-bar">
+        <a href="../Index/index.html"><span class="icon">🏠</span>Inicio</a>
+        <a href="#"><span class="icon">📦</span>Productos</a>
+        <a href="#"><span class="icon">🛒</span>Carrito</a>
+        <a href="#"><span class="icon">📄</span>Mis Compras</a>
+        <a href="#"><span class="icon">⚙️</span>Configuración</a>
+      </nav>
+</header>
+
     </header>
     <main>
       <div class="FormDiv">
@@ -42,6 +52,12 @@
         <br>
         <input type="date" id="datebirth" name="datebirth" class="FormInput" required>
         <br>
+        <label for="comunidad" class="FormLabel">Comunidad autónoma:</label>
+        <br>
+        <select id="comunidad" class="FormInput" required>
+          <option value="">Selecciona tu comunidad autónoma</option>
+        </select>
+        <br>
         <label for="password" class="FormLabel">Contraseña:</label>
         <br>
         <input type="password" id="password" name="password" class="FormInput" required>
@@ -60,7 +76,6 @@
                 The password must be at least 8 characters long
             </p>
         </div>
-        <hr>
         <button type="submit" class="MoveButton">Enviar</button>
         <button type="reset" class="MoveButton">Limpiar</button>
         <br>

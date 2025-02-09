@@ -1,56 +1,72 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="utf-8">
-    <title>Formulario de Login</title>
-    <link rel="stylesheet" href="Index.css" type="text/css">
-  </head>
-  <body>
-    <header>
-      <nav class="IniatialMenu">
-        <ul class="InitialMenuList">
-          <li><img src="../../imgs/ferrari.jpeg" alt=""></li>
-          <li><a href="../LogIn/LogIn.html"><button>Log In</button></a></li>
-          <li><a href="../Registro/registro.html"><button>Registrarse</button></a></li>
-        </ul>
-      </nav>
-      <nav class="MenuOptions">
-        <ul class="ListaMenu">
-          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Principal</button></a></li>
-          <li class="MenuOption"><a href=""><button class="MenuButton">Mis subastas</button></a></li>
-          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Productos</button></a></li>
-          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Ranking</button></a></li>
-          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Amigos</button></a></li>
-          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Perfil</button></a></li>
-          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Sugerencias</button></a></li>
-          <li class="MenuOption"><a href="../Index/Index.html"><button class="MenuButton">Tutorial</button></a></li>
-          <li class="MenuOption"><a href="../LogIn/LogIn.html"><button class="MenuButton">Log In</button></a></li>
-          <li class="MenuOption"><a href="../Registro/registro.html"><button class="MenuButton">Registrarse</button></a></li>
-        </ul>
-      </nav>
-      <h1>Bienvenido a nuestra Página de Subastas</h1>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Subastas</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="js" href="index.js">
+</head>
+<body>
 
-    </header>
+<header>
+  <!-- Primera barra de navegación -->
+  <nav class="nav-bar">
+    <div class="logo">sAPIens</div>
+
+    <div class="search-container">
+      <input type="text" placeholder="Buscar por producto, categoría, etc.">
+    </div>
+
+    <div class="auth-links">
+      <a href="../LogIn/LogIn.html"><button>Iniciar sesión</button></a>
+      <a href="../Registro/registro.html"><button>Registrarse</button></a>
+    </div>
+  </nav>
+
+  <!-- Segunda barra de navegación -->
+  <nav class="menu-bar">
+    <a href="index.html"><span class="icon">🏠</span>Inicio</a>
+    <a href="#"><span class="icon">📦</span>Productos</a>
+    <a href="#"><span class="icon">🛒</span>Carrito</a>
+    <a href="#"><span class="icon">📄</span>Mis Compras</a>
+    <a href="#"><span class="icon">⚙️</span>Configuración</a>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <h1>Bienvenido a Subastas</h1>
+    <p>Aquí encontrarás los mejores productos en subasta.</p>
+  </section>
+
+  <div class="carrusel">
+    <!-- Aquí habrá un carrusel con información de la página y de la empresa -->
+  </div>
+
+</main>
     <footer>
-      <div class="container">
-        <h2 class="footerTitle">CONTÁCTANOS</h2>
+        <footer>
+            <div class="container">
+              <h2 class="footerTitle">CONTÁCTANOS</h2>
+            
+              <div class="subcontainer">
+                <div class="footerInfo">
+                  <img src="../../imgs/perfilLogo.avif" alt="" class="perfilLogo">
+                  <p>Sobre Nosotros</p>
+                </div>
       
-        <div class="subcontainer">
-          <div class="footerInfo">
-            <img src="../../imgs/perfilLogo.avif" alt="" class="perfilLogo">
-            <p>Sobre Nosotros</p>
-          </div>
-
-          <div class="footerInfo">
-            <img src="../../imgs/InstagramLogo.png" alt="" class="instaLogo">
-              <p>Nuestro Instagram</p>
-          </div>
-
-          <div class="footerInfo">
-            <a href="https://www.instagram.com/"></a><img src="../../imgs/logoX.net_.png" alt="" class="xLogo">
-            <p>Nuestro X</p>
-          </div>
-      </div>
+                <div class="footerInfo">
+                  <img src="../../imgs/InstagramLogo.png" alt="" class="instaLogo">
+                    <p>Nuestro Instagram</p>
+                </div>
+      
+                <div class="footerInfo">
+                  <a href="https://www.instagram.com/"></a><img src="../../imgs/logoX.net_.png" alt="" class="xLogo">
+                  <p>Nuestro X</p>
+                </div>
+            </div>
+          </footer>
     </footer>
-  </body>
+</body>
 </html>

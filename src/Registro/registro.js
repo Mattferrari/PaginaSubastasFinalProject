@@ -5,6 +5,78 @@ const lengthAlertDiv = document.querySelector(".PasswordLengthAlert");
 const minimumLen = 8
 
 const dateField = document.getElementById("datebirth");
+const cityInput = document.getElementById('city-input');
+const citySuggestions = document.getElementById('city-suggestions');
+
+// const comunidades = [
+//     "Andalucía", "Aragón", "Asturias", "Baleares", "Canarias", "Cantabria", "Castilla y León", 
+//     "Castilla-La Mancha", "Cataluña", "Extremadura", "Galicia", "Madrid", "Murcia", "Navarra", 
+//     "La Rioja", "País Vasco", "Valencia", "Ceuta", "Melilla"
+//   ];
+
+
+
+// registerButton.addEventListener('click', () => {
+// registerModal.style.display = 'flex';
+// const comunidadesSelect = document.getElementById('comunidades');
+
+// // Llenar el desplegable dinámicamente
+// if (comunidadesSelect.options.length === 1) {
+//     comunidades.forEach(comunidad => {
+//     const option = document.createElement('option');
+//     option.value = comunidad;
+//     option.textContent = comunidad;
+//     comunidadesSelect.appendChild(option);
+//     });
+// }
+// });
+
+// // Cerrar modal de registro
+// closeRegister.addEventListener('click', () => {
+//     registerModal.style.display = 'none';
+//   });
+
+//   // Limpiar campos del formulario de registro
+//   clearRegisterFields.addEventListener('click', () => {
+//     document.getElementById('username').value = '';
+//     document.getElementById('email').value = '';
+//     document.getElementById('comunidades').value = '';
+//   });
+
+//   // Cerrar modal al hacer clic fuera de él
+//   window.addEventListener('click', (e) => {
+//     if (e.target === registerModal) {
+//       registerModal.style.display = 'none';
+//     }
+//   });
+
+document.getElementById('comunidad').addEventListener('click', function() {
+    const comunidades = [
+        "Andalucía", "Cataluña", "Madrid", "Galicia", "Castilla y León", "Valencia", 
+        "Castilla-La Mancha", "País Vasco", "Canarias", "Aragón", "Murcia", "Extremadura", 
+        "Cantabria", "La Rioja", "Baleares", "Navarra", "País Valenciano", "Ceuta", "Melilla"
+    ];
+
+    const select = document.getElementById('comunidad');
+
+    // Limpia las opciones previas
+
+    // Añade las nuevas opciones
+    comunidades.forEach(comunidad => {
+        const option = document.createElement('option');
+        option.value = comunidad;
+        option.textContent = comunidad;
+        select.appendChild(option);
+    });
+    });
+
+  // Para almacenar el valor seleccionado
+document.getElementById('comunidad').addEventListener('change', function() {
+    const selectedValue = this.value;
+    console.log("Comunidad seleccionada: ", selectedValue);
+    // Si necesitas hacer algo con el valor seleccionado, como enviarlo o mostrarlo, lo puedes hacer aquí.
+    });
+
 
 
 // establecer fecha máxima de registro:
