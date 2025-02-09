@@ -1,0 +1,68 @@
+{ 
+    "products":[
+        {
+            "id":1,
+            "title": "Medalla Purple Hearts Americana",
+            "category": "Medal",
+            "description": "Medalla Purple Hearts americana de la Segunda Guerra Mundial, otorgada por acciones de valentía.",
+            "images": [
+                "../../imgs/productos/purple_heart/1.jpg",
+                "../../imgs/productos/purple_heart/2.jpg",
+                "../../imgs/productos/purple_heart/3.jpg",
+                "../../imgs/productos/purple_heart/4.jpg",
+                "../../imgs/productos/purple_heart/5.jpg"
+            ],
+            "price": 3,
+            "dimensions": {
+                "width": 5,
+                "height": 10,
+                "depth": 1
+            },
+            "tags": [
+                "Medal",
+                "USA",
+                "Militar"
+            ],
+            
+            "subida_minima": 1,
+            "weight": 0.1,
+            "tiempo_fin": "2025-02-12T11:00:00Z",
+            "historial": [
+            {"usuario": "John", "oferta": 2},
+            {"usuario": "Emily", "oferta": 1}
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Medalla de la Cruz de Hierro",
+            "category": "Medal",
+            "images": [
+                "../../imgs/productos/cruz_hierro/1.jpg",
+                "../../imgs/productos/cruz_hierro/2.jpg",
+                "../../imgs/productos/cruz_hierro/3.jpg",
+                "../../imgs/productos/cruz_hierro/4.jpg",
+                "../../imgs/productos/cruz_hierro/5.jpg"            
+            
+            ],
+            "description": "Medalla de la Cruz de Hierro de la Primera Guerra Mundial (1914), considerada un artículo histórico.",
+            "price": 2,
+            "weight": 0.1,
+            "dimensions": {
+                "width": 5,
+                "height": 10,
+                "depth": 1
+            },
+            "tags": [
+                "WW1",
+                "Medal",
+                "Iron Cross"
+            ],
+            "subida_minima": 0.5,
+            "tiempo_fin": "2025-02-11T10:00:00Z",
+            "historial": [
+                {"usuario": "Mark", "oferta": 1.5},
+                {"usuario": "Sophie", "oferta": 1}
+            ]
+        }
+    ]
+}

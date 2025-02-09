@@ -10,8 +10,9 @@ async function loadJSON() {
 
     // load JSON data
     // future expanse MongoDB
-    const data = await fetch("Data_Products.json");
-    const productos = await data.json();
+    const data = await fetch("../Products/Pers_Products.json");
+    const json = await data.json();
+    const productos = json["products"];
     const producto = productos[idProducto];
     return producto
 }
@@ -23,9 +24,9 @@ const cargarProducto = async () => {
     }
     loadTime(producto);
     // load data to HTML
-    document.getElementById("titulo").innerText = producto.titulo;
-    document.getElementById("descripcion").innerText = producto.descripcion;
-    document.getElementById("precio").innerText = `${producto.precio}`;
+    document.getElementById("titulo").innerText = producto.title;
+    document.getElementById("descripcion").innerText = producto.description;
+    document.getElementById("precio").innerText = `${producto.price}`;
 
     // valor de la puja
     const precioMinimo = producto.precio
@@ -35,11 +36,11 @@ const cargarProducto = async () => {
     campoPuja.setAttribute('min', precioMinimo);
 
     // Load images to HTML
-    document.getElementById("imagenPrincipal").src = producto.imagenes[0];
+    document.getElementById("imagenPrincipal").src = producto.images[0];
 
     // Miniatures
     let miniaturasDiv = document.getElementById("miniaturas");
-    producto.imagenes.forEach(img => {
+    producto.images.forEach(img => {
         let imgElem = document.createElement("img");
         imgElem.src = img;
         imgElem.onclick = () => document.getElementById("imagenPrincipal").src = img;
