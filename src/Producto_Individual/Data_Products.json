@@ -1,26 +1,39 @@
 {
-    "123": {
-        "titulo": "Reloj Rolex",
-        "imagenes": [],
-        "descripcion": "Reloj de lujo Rolex modelo 2023.",
-        "subida_minima": 200,
-        "precio": 5000,
-        "tiempo_fin": "2025-02-10T09:30:00Z",
+    "2": {
+        "titulo": "Medalla de la Cruz de Hierro",
+        "imagenes": [
+            "../../imgs/productos/cruz_hierro/1.jpg",
+            "../../imgs/productos/cruz_hierro/2.jpg",
+            "../../imgs/productos/cruz_hierro/3.jpg",
+            "../../imgs/productos/cruz_hierro/4.jpg",
+            "../../imgs/productos/cruz_hierro/5.jpg"            
+        
+        ],
+        "descripcion": "Medalla de la Cruz de Hierro de la Segunda Guerra Mundial, considerada un artículo histórico.",
+        "subida_minima": 300,
+        "precio": 2000,
+        "tiempo_fin": "2025-02-11T10:00:00Z",
         "historial": [
-            {"usuario": "Juan", "oferta": 4800},
-            {"usuario": "Ana", "oferta": 4600}
+            {"usuario": "Mark", "oferta": 1800},
+            {"usuario": "Sophie", "oferta": 1700}
         ]
     },
-    "456": {
-        "titulo": "iPhone 15 Pro",
-        "imagenes": ["iphone1.jpg", "iphone2.jpg"],
-        "descripcion": "iPhone 15 Pro, 256GB, color titanio.",
-        "subida_minima": 100,
-        "precio": 1200,
-        "tiempo_fin": "2025-02-10T09:30:00Z",
+    "1": {
+        "titulo": "Medalla de Honor Americana",
+        "imagenes": [
+            "../../imgs/productos/purple_heart/1.jpg",
+            "../../imgs/productos/purple_heart/2.jpg",
+            "../../imgs/productos/purple_heart/3.jpg",
+            "../../imgs/productos/purple_heart/4.jpg",
+            "../../imgs/productos/purple_heart/5.jpg"
+        ],
+        "descripcion": "Medalla de Honor americana de la Segunda Guerra Mundial, otorgada por acciones de valentía.",
+        "subida_minima": 500,
+        "precio": 3000,
+        "tiempo_fin": "2025-02-12T11:00:00Z",
         "historial": [
-            {"usuario": "Carlos", "oferta": 1100},
-            {"usuario": "Lucía", "oferta": 1000}
+            {"usuario": "John", "oferta": 2800},
+            {"usuario": "Emily", "oferta": 2600}
         ]
     }
 }
