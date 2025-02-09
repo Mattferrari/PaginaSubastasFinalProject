@@ -79,8 +79,8 @@ document.getElementById('comunidad').addEventListener('change', function() {
 
 
 
-// establecer fecha máxima de registro:
-// prohibido para menores de edad
+// stablish max date to register:
+// forbidden under the age of 18
 const today = new Date();
 const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate()).toISOString().split('T')[0];
 const minDate = new Date(today.getFullYear() - 120, today.getMonth(), today.getDate());
@@ -90,11 +90,10 @@ dateField.setAttribute('min',minDate);
 
 /**
  * Returns a boolean that validates if both password and confirmation are equal.
- * This code will be only checked on submit to avoid security issues.
  * @returns {boolean}
  */
 async function ValidatePasswordConsistency() {
-    if(contrasena1.value === confirmation.value){
+    if(contrasena1.value === confirmation.value || confirmation.value.length === 0){
         confirmation.classList.remove("error")
         alertDiv.classList.add("hidden")
         return true
@@ -132,7 +131,6 @@ async function validatePasswordLength(event) {
 async function validatePasswords(event) {
     event.preventDefault();
     const isConsistent = await ValidatePasswordConsistency();
-    /** la forma de convertir las contraseñas en eventos: { target: contrasena1 } se resolvió mediante el uso de IA*/
     const isLenOk1 = await validatePasswordLength({ target: contrasena1 }); 
     const isLenOk2 = await validatePasswordLength({ target: confirmation });
 
@@ -147,5 +145,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     form.onsubmit = validatePasswords;
 
     contrasena1.addEventListener('input', validatePasswordLength);
+    contrasena1.addEventListener('input', ValidatePasswordConsistency);
     confirmation.addEventListener('input', validatePasswordLength);
+    confirmation.addEventListener('input', ValidatePasswordConsistency);
 });

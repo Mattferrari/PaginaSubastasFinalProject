@@ -2,7 +2,9 @@ productos individual:
     - Se cargan los datos en un JSON adjunto, luego estos datos se cargan en la página para personalizarla para cada producto.
     - El ID se obitiene en la URL, esto tiene sentido, ya que no es un campo privado, y solo da acceso a la web del producto.
     -se establece una subida mínima predeterminada de 10$ pero se puede cambiar
-    
+    -- set url to ../Products/Pers_Products.json to get personalized Products
+    -- set url to ../Products/API_Data.json to get the api products
+
 
     -- TODO
     - falta que el usuario se ajuste al que ha accedidio y no sea "TU"
