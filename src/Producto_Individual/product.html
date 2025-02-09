@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subasta - Producto</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <div class="producto">
+        <h1 id="titulo"></h1>
+        <div class="galeria">
+            <img id="imagenPrincipal" src="" alt="Producto">
+            <div class="miniaturas" id="miniaturas"></div>
+        </div>
+        <p id="descripcion"></p>
+        <p>Precio actual: <strong id="precio"></strong></p>
+        <p>Tiempo restante: <span id="tiempo"></span></p>
+        <input type="number" id="puja" placeholder="Tu oferta">
+        <button onclick="realizarPuja()">Pujar</button>
+        <ul id="historial"></ul>
+    </div>
+    <script src="product.js"></script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+productos individual:
+    - Se cargan los datos en un JSON adjunto, luego estos datos se cargan en la página para personalizarla para cada producto.
+    - El ID se obitiene en la URL, esto tiene sentido, ya que no es un campo privado, y solo da acceso a la web del producto.
