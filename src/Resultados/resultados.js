@@ -36,7 +36,7 @@ function mostrarResultados(productos) {
             <p><strong>Precio inicial:</strong> ${producto.price}€</p>
         `;
         productoElemento.onclick = () => {
-            window.location.href = `http://localhost:8000/src/Producto_Individual/product.html?id=${producto.id}`;
+            window.location.href = `../Producto_Individual/product.html?id=${producto.id-1}`;
         };
         resultsDiv.appendChild(productoElemento);
     });
