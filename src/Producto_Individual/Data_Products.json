@@ -3,17 +3,19 @@
         "titulo": "Reloj Rolex",
         "imagenes": [],
         "descripcion": "Reloj de lujo Rolex modelo 2023.",
+        "subida_minima": 200,
         "precio": 5000,
         "tiempo_fin": "2025-02-10T09:30:00Z",
         "historial": [
             {"usuario": "Juan", "oferta": 4800},
-            {"usuario": "Ana", "oferta": 4700}
+            {"usuario": "Ana", "oferta": 4600}
         ]
     },
     "456": {
         "titulo": "iPhone 15 Pro",
         "imagenes": ["iphone1.jpg", "iphone2.jpg"],
         "descripcion": "iPhone 15 Pro, 256GB, color titanio.",
+        "subida_minima": 100,
         "precio": 1200,
         "tiempo_fin": "2025-02-10T09:30:00Z",
         "historial": [

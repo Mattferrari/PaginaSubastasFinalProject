@@ -10,14 +10,15 @@
     <div class="producto">
         <h1 id="titulo"></h1>
         <div class="galeria">
-            <img id="imagenPrincipal" src="" alt="Producto">
+            <img id="imagenPrincipal" src="" alt="Imagen del producto">
             <div class="miniaturas" id="miniaturas"></div>
         </div>
         <p id="descripcion"></p>
-        <p>Precio actual: <strong id="precio"></strong></p>
+        <p>Precio actual: <b>$</b><strong id="precio"></strong></p>
         <p>Tiempo restante: <span id="tiempo"></span></p>
+        <p>Subida mínima: <strong id="minUp"></strong></p>
         <input type="number" id="puja" placeholder="Tu oferta">
-        <button onclick="realizarPuja()">Pujar</button>
+        <button onclick="pujar()">Pujar</button>
         <ul id="historial"></ul>
     </div>
     <script src="product.js"></script>
