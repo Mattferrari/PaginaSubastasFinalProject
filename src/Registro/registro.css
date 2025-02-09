@@ -133,10 +133,10 @@ body {
 .container{
   background-color: black;
   border-style: solid;
-  width: 95%;
+  width: 90%;
   height: 200px;
-  margin-left: 2.5%;
-  margin-top: 2.5%;
+  margin-left: 5%;
+  margin-top: 5%;
 }
 
 .subcontainer{
