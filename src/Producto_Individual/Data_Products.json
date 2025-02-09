@@ -9,7 +9,7 @@
             "../../imgs/productos/cruz_hierro/5.jpg"            
         
         ],
-        "descripcion": "Medalla de la Cruz de Hierro de la Segunda Guerra Mundial, considerada un artículo histórico.",
+        "descripcion": "Medalla de la Cruz de Hierro de la Primera Guerra Mundial (1914), considerada un artículo histórico.",
         "subida_minima": 300,
         "precio": 2000,
         "tiempo_fin": "2025-02-11T10:00:00Z",
@@ -19,7 +19,7 @@
         ]
     },
     "1": {
-        "titulo": "Medalla de Honor Americana",
+        "titulo": "Medalla Purple Hearts Americana",
         "imagenes": [
             "../../imgs/productos/purple_heart/1.jpg",
             "../../imgs/productos/purple_heart/2.jpg",
@@ -27,13 +27,14 @@
             "../../imgs/productos/purple_heart/4.jpg",
             "../../imgs/productos/purple_heart/5.jpg"
         ],
-        "descripcion": "Medalla de Honor americana de la Segunda Guerra Mundial, otorgada por acciones de valentía.",
+        "descripcion": "Medalla Purple Hearts americana de la Segunda Guerra Mundial, otorgada por acciones de valentía.",
         "subida_minima": 500,
         "precio": 3000,
         "tiempo_fin": "2025-02-12T11:00:00Z",
         "historial": [
             {"usuario": "John", "oferta": 2800},
             {"usuario": "Emily", "oferta": 2600}
-        ]
+        ],
+        "tags": []
     }
 }
