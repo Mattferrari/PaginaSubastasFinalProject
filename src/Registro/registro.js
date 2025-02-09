@@ -8,47 +8,30 @@ const dateField = document.getElementById("datebirth");
 const cityInput = document.getElementById('city-input');
 const citySuggestions = document.getElementById('city-suggestions');
 
-// const comunidades = [
-//     "Andalucía", "Aragón", "Asturias", "Baleares", "Canarias", "Cantabria", "Castilla y León", 
-//     "Castilla-La Mancha", "Cataluña", "Extremadura", "Galicia", "Madrid", "Murcia", "Navarra", 
-//     "La Rioja", "País Vasco", "Valencia", "Ceuta", "Melilla"
-//   ];
+const ciudades = {
+    "Andalucía": ["Sevilla", "Granada", "Málaga", "Córdoba", "Cádiz"],
+    "Cataluña": ["Barcelona", "Tarragona", "Girona", "Lleida"],
+    "Madrid": ["Madrid", "Alcalá de Henares", "Getafe"],
+    "Galicia": ["Santiago de Compostela", "A Coruña", "Vigo", "Lugo"],
+    "Castilla y León": ["Valladolid", "León", "Burgos", "Salamanca"],
+    "Valencia": ["Valencia", "Alicante", "Castellón"],
+    "Castilla-La Mancha": ["Toledo", "Albacete", "Cuenca"],
+    "País Vasco": ["Bilbao", "San Sebastián", "Vitoria"],
+    "Canarias": ["Las Palmas", "Santa Cruz de Tenerife"],
+    "Aragón": ["Zaragoza", "Huesca", "Teruel"],
+    "Murcia": ["Murcia", "Cartagena"],
+    "Extremadura": ["Mérida", "Badajoz", "Cáceres"],
+    "Cantabria": ["Santander", "Torrelavega"],
+    "La Rioja": ["Logroño", "Calahorra"],
+    "Baleares": ["Palma de Mallorca", "Ibiza", "Menorca"],
+    "Navarra": ["Pamplona", "Tudela"],
+    "País Valenciano": ["Valencia", "Alicante", "Castellón"],
+    "Ceuta": ["Ceuta"],
+    "Melilla": ["Melilla"]
+  };
 
+const regexCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-
-// registerButton.addEventListener('click', () => {
-// registerModal.style.display = 'flex';
-// const comunidadesSelect = document.getElementById('comunidades');
-
-// // Llenar el desplegable dinámicamente
-// if (comunidadesSelect.options.length === 1) {
-//     comunidades.forEach(comunidad => {
-//     const option = document.createElement('option');
-//     option.value = comunidad;
-//     option.textContent = comunidad;
-//     comunidadesSelect.appendChild(option);
-//     });
-// }
-// });
-
-// // Cerrar modal de registro
-// closeRegister.addEventListener('click', () => {
-//     registerModal.style.display = 'none';
-//   });
-
-//   // Limpiar campos del formulario de registro
-//   clearRegisterFields.addEventListener('click', () => {
-//     document.getElementById('username').value = '';
-//     document.getElementById('email').value = '';
-//     document.getElementById('comunidades').value = '';
-//   });
-
-//   // Cerrar modal al hacer clic fuera de él
-//   window.addEventListener('click', (e) => {
-//     if (e.target === registerModal) {
-//       registerModal.style.display = 'none';
-//     }
-//   });
 
 document.getElementById('comunidad').addEventListener('click', function() {
     const comunidades = [
@@ -59,7 +42,6 @@ document.getElementById('comunidad').addEventListener('click', function() {
 
     const select = document.getElementById('comunidad');
 
-    // Limpia las opciones previas
 
     // Añade las nuevas opciones
     comunidades.forEach(comunidad => {
@@ -70,13 +52,33 @@ document.getElementById('comunidad').addEventListener('click', function() {
     });
     });
 
-  // Para almacenar el valor seleccionado
-document.getElementById('comunidad').addEventListener('change', function() {
-    const selectedValue = this.value;
-    console.log("Comunidad seleccionada: ", selectedValue);
-    // Si necesitas hacer algo con el valor seleccionado, como enviarlo o mostrarlo, lo puedes hacer aquí.
-    });
+// document.getElementById('comunidad').addEventListener('change', function() {
+//     const selectedValue = this.value;
+//     console.log("Comunidad seleccionada: ", selectedValue);
+//     });
 
+
+document.getElementById('comunidad').addEventListener('change', function() {
+    const selectedComunidad = this.value;
+    const selectCiudad = document.getElementById('ciudad');
+    
+    
+    if (selectedComunidad !== "") {
+        // Habilita el desplegable de ciudades
+        selectCiudad.disabled = false;
+        
+        // Añade las ciudades correspondientes a la comunidad seleccionada
+        ciudades[selectedComunidad].forEach(ciudad => {
+        const option = document.createElement('option');
+        option.value = ciudad;
+        option.textContent = ciudad;
+        selectCiudad.appendChild(option);
+        });
+    } else {
+        // Si no se selecciona una comunidad, deshabilita el campo ciudad
+        selectCiudad.disabled = true;
+    }
+    });
 
 
 // stablish max date to register:
@@ -149,3 +151,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     confirmation.addEventListener('input', validatePasswordLength);
     confirmation.addEventListener('input', ValidatePasswordConsistency);
 });
+
+
+document.getElementById('formulario').addEventListener('submit', function(e) {
+    const correo = document.getElementById('email').value;
+    
+    if (!regexCorreo.test(correo)) {
+        alert("Por favor, introduce un correo electrónico válido.");
+        e.preventDefault(); // Evita el envío del formulario
+    }
+    });

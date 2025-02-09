@@ -30,10 +30,11 @@
         <a href="#"><span class="icon">📄</span>Mis Compras</a>
         <a href="#"><span class="icon">⚙️</span>Configuración</a>
       </nav>
-</header>
+    </header>
 
     </header>
     <main>
+      <a href="../Index/index.html"><img src="../../imgs/logoSubAstas.png" alt="Logo de sAPIens" class="Logo"></a>
       <div class="FormDiv">
       <h1 class="FormTitle">Formulario de registro</h1>
       <form class="Formulario" method="post">
@@ -41,9 +42,13 @@
         <br>
         <input type="text" id="name" name="name" class="FormInput" required placeholder="Matteo">
         <br>
-        <label for="username" class="FormLabel">Usuario:</label>
+        <label for="Surname" class="FormLabel">Apellido:</label>
         <br>
-        <input type="text" id="username" name="username" class="FormInput" required placeholder="matteofermar">
+        <input type="text" id="Surname" name="Surname" class="FormInput" required>
+        <br>
+        <label for="DNI" class="FormLabel">DNI/NIE:</label>
+        <br>
+        <input type="text" id="DNI" name="DNI" class="FormInput" required>
         <br>
         <label for="email" class="FormLabel">Correo electrónico:</label>
         <br>
@@ -51,13 +56,23 @@
         <br>
         <label for="datebirth" class="FormLabel">Fecha de Nacimiento:</label>
         <br>
-        <input type="date" id="datebirth" name="datebirth" class="FormInput" required>
+        <input type="date" id="datebirth" name="datebirth" class="FormInput">
         <br>
         <label for="comunidad" class="FormLabel">Comunidad autónoma:</label>
         <br>
-        <select id="comunidad" class="FormInput" required>
+        <select id="comunidad" class="FormInput">
           <option value="">Selecciona tu comunidad autónoma</option>
         </select>
+        <br>
+        <label for="ciudad" class="FormLabel">Ciudad:</label>
+        <br>
+        <select id="ciudad" name="ciudad" class="FormInput" disabled>
+          <option value="">Selecciona una ciudad</option>
+        </select>
+        <br>
+        <label for="username" class="FormLabel">Usuario:</label>
+        <br>
+        <input type="text" id="username" name="username" class="FormInput" placeholder="matteofermar">
         <br>
         <label for="password" class="FormLabel">Contraseña:</label>
         <br>
@@ -72,20 +87,18 @@
                 The passwords are not the same!
             </p>
         </div>
+        <br>
         <div class="PasswordLengthAlert hidden">
             <p>
                 The password must be at least 8 characters long
             </p>
         </div>
+        <br>
+        <br>
         <button type="submit" class="MoveButton">Enviar</button>
         <button type="reset" class="MoveButton">Limpiar</button>
         <br>
-        <br>
-        <a href="../LogIn/LogIn.html" class="boton-volver">
-            <img src="../../imgs/volver.png" height="30" width="30" alt="Foto de Matteo Ferrari, exjugador de la Roma FC">
-        </a>
-        <br>
-        <a href="../Index/Index.html">menú principal</a>
+        <a href="../Index/Index.html"><img src="../../imgs/homeIcon2.jpeg" alt="" class="homeIcon"></a>
       </form>
     </div>
     </main>

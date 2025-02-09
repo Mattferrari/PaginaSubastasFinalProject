@@ -91,6 +91,67 @@ body {
     text-align: center;
     margin: 2.5%;
   }
+/* carousel --------------------------------------------------------------------------------- */
+
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 70%;
+  margin: auto;
+  overflow: hidden;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  background: #f9f9f9;
+  border-color: black;
+}
+
+.carousel-content {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  min-width: 100%;
+  padding: 20px;
+}
+
+.slide img {
+  width: 30%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.text {
+  width: 60%;
+  padding: 20px;
+  text-align: left;
+}
+
+button.prev, button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+button.prev { left: 10px; }
+button.next { right: 10px; }
+
+button.prev:hover, button.next:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
 
 
 

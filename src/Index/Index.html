@@ -36,37 +36,61 @@
 
 <main>
   <section>
-    <h1>Bienvenido a Subastas</h1>
-    <p>Aquí encontrarás los mejores productos en subasta.</p>
+    <h1>Bienvenido a la mejor página de subastas</h1>
   </section>
 
-  <div class="carrusel">
-    <!-- Aquí habrá un carrusel con información de la página y de la empresa -->
+  <div class="carousel">
+    <button class="prev" onclick="moverCarrusel(-1)">&#10094;</button> 
+    <div class="carousel-content">
+      <div class="slide active">
+        <img src="../../imgs/logoSubAstas.png" alt="Imagen 1">
+        <div class="text">
+          <h2>Sobre Nosotros</h2>
+          <p>Esta es una página de subastas. <br> 
+            Los creadores de esta página web son dos ingenieros de la Universidad Pontificia de Comillas para la asignatura de Servicios y Aplicaciones web. <br>
+            El objetivo de esta página es el de ofrecer un entorno confortable con todo tipo de productos útiles del día a día. Cientos de personas se encuentran hoy suscritas a esta web.
+           </p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="img2.jpg" alt="Imagen 2">
+        <div class="text">
+          <h2>Regístrate Gratis</h2>
+          <p>Accede a subastas y puja por los mejores productos.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="img3.jpg" alt="Imagen 3">
+        <div class="text">
+          <h2>Compra Segura</h2>
+          <p>Garantizamos una experiencia segura y confiable.</p>
+        </div>
+      </div>
+    </div>
+    <button class="next" onclick="moverCarrusel(1)">&#10095;</button> 
   </div>
 
 </main>
     <footer>
-        <footer>
-            <div class="container">
-              <h2 class="footerTitle">CONTÁCTANOS</h2>
-            
-              <div class="subcontainer">
-                <div class="footerInfo">
-                  <img src="../../imgs/perfilLogo.avif" alt="" class="perfilLogo">
-                  <p>Sobre Nosotros</p>
-                </div>
-      
-                <div class="footerInfo">
-                  <img src="../../imgs/InstagramLogo.png" alt="" class="instaLogo">
-                    <p>Nuestro Instagram</p>
-                </div>
-      
-                <div class="footerInfo">
-                  <a href="https://www.instagram.com/"></a><img src="../../imgs/logoX.net_.png" alt="" class="xLogo">
-                  <p>Nuestro X</p>
-                </div>
+        <div class="container">
+          <h2 class="footerTitle">CONTÁCTANOS</h2>
+        
+          <div class="subcontainer">
+            <div class="footerInfo">
+              <img src="../../imgs/perfilLogo.avif" alt="" class="perfilLogo">
+              <p>Sobre Nosotros</p>
             </div>
-          </footer>
+  
+            <div class="footerInfo">
+              <img src="../../imgs/InstagramLogo.png" alt="" class="instaLogo">
+                <p>Nuestro Instagram</p>
+            </div>
+  
+            <div class="footerInfo">
+              <a href="https://www.instagram.com/"></a><img src="../../imgs/logoX.net_.png" alt="" class="xLogo">
+              <p>Nuestro X</p>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
