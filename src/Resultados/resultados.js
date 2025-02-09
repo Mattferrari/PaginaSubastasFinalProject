@@ -5,7 +5,7 @@ async function cargarResultados() {
     
     try {
         const response = await fetch("../Products/API_Data.json"); 
-        const jsonresult = await response.json()
+        const jsonresult = await response.json();
         const productos = jsonresult["products"];
         
         const resultados = productos.filter(producto => 
@@ -35,6 +35,9 @@ function mostrarResultados(productos) {
             <p>${producto.description}</p>
             <p><strong>Precio inicial:</strong> ${producto.price}€</p>
         `;
+        productoElemento.onclick = () => {
+            window.location.href = `http://localhost:8000/src/Producto_Individual/product.html?id=${producto.id}`;
+        };
         resultsDiv.appendChild(productoElemento);
     });
 }
