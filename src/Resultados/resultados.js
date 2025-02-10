@@ -4,8 +4,8 @@ async function cargarResultados() {
     if (!searchTag) return;
     
     try {
-        // const response = await fetch(""); 
-        const response = await fetch("../Products/API_Data.json"); 
+        // const response = await fetch("// const data = await fetch("https://dummyjson.com/products")
+        const response = await fetch("../Products/Pers_Products.json"); 
         const jsonresult = await response.json();
         const productos = jsonresult["products"];
         

@@ -10,7 +10,8 @@ async function loadJSON() {
 
     // load JSON data
     // future expanse MongoDB
-    const data = await fetch("../Products/API_Data.json");
+    // const data = await fetch("https://dummyjson.com/products");
+    const data = await fetch("../Products/Pers_Products.json");
     const json = await data.json();
     const productos = json["products"];
     const producto = productos[idProducto];
