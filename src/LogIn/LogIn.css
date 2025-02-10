@@ -177,7 +177,7 @@ div.LogInArea{
 
 .Logo{
     width: 15%;
-    height: 15%;
+    height: auto;
     margin-left: 42.5%;
     margin-top: 20px;
 }
