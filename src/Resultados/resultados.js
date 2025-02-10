@@ -31,10 +31,11 @@ function mostrarResultados(productos) {
     productos.forEach(producto => {
         const productoElemento = document.createElement("div");
         productoElemento.innerHTML = `
-            <img src="${producto.images[0]}" alt="${producto.title} width='100px' height='100px'">
+            <img src="${producto.images[0]}" alt="${producto.title}" width="20%" height="auto">
             <h2>${producto.title}</h2>
             <p>${producto.description}</p>
             <p><strong>Precio inicial:</strong> ${producto.price}€</p>
+            <hr>
         `;
         productoElemento.onclick = () => {
             window.location.href = `../Producto_Individual/product.html?id=${producto.id-1}`;
