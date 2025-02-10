@@ -31,7 +31,7 @@ function mostrarResultados(productos) {
     productos.forEach(producto => {
         const productoElemento = document.createElement("div");
         productoElemento.innerHTML = `
-            <img src="${producto.images[0]}" alt="${producto.title}" width="20%" height="auto">
+            <img src="${producto.images[0]}" alt="${producto.title}" class="image">
             <h2>${producto.title}</h2>
             <p>${producto.description}</p>
             <p><strong>Precio inicial:</strong> ${producto.price}€</p>
