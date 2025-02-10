@@ -1,0 +1,246 @@
+/* * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+ */
+
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: auto 1fr auto; 
+  }
+  
+  header {
+    background-color: #000000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  main {
+    margin: 2.5%;
+    height: 60%;
+  }
+
+  footer {
+    margin-top: 3%;
+    background: #000000;
+    text-align: center;
+    padding: 20px;
+    height: 250px;
+  }
+
+  
+  .nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  
+  .logo {
+    font-size: 1.5em;
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  .search-container {
+    flex-grow: 1;
+    margin: 0 20px;
+  }
+  
+  .search-container input[type="text"] {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+  }
+  
+  .auth-links {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .auth-links button {
+    text-decoration: none;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    border-radius: 5%;
+    width: 150px;
+    height: 50px;
+    border-style: none;
+  }
+  
+  .auth-links button:hover {
+    background-color: #dedeff;
+    cursor: pointer;
+  }
+  
+  .menu-bar {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+  }
+  
+  .menu-bar a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .menu-bar a:hover {
+    background-color: #322d2d;
+  }
+  
+  .icon {
+    margin-right: 5px;
+    font-size: 1.2em;
+  }
+
+body {
+    background-color: white;
+}
+
+div.LogInArea{
+    background-color: rgb(210, 228, 249);
+    border-radius: 5%;
+    border-style: solid;
+    width: 40%;
+    height: 500px;
+    margin-left: 30%;
+}
+
+.LogInFields{
+    text-align: center;
+}
+
+.LogInLabels{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+.LogInInputs {
+    border-style: solid;
+    width: 40%;
+    height: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.LogInInputs:focus-within {
+    background-color: rgb(210, 228, 249);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
+}
+
+.LogInText{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.LogInLabel {
+    text-align: center;
+    font-size: large;
+}
+
+.SendButton {
+    border-radius: 5px;
+    width: 20%;
+    height: 40px;
+}
+
+.SendButton:hover {
+    width: 21%;
+    height: 42px;
+    background-color: rgb(163, 170, 252);
+}
+
+.homeIcon {
+    width: 60px;
+    height: 50px;
+    margin-top: 10px;
+}
+
+.homeIcon:hover {
+    transform: scale(1.05);
+}
+
+.Logo{
+    width: 15%;
+    height: auto;
+    margin-left: 42.5%;
+    margin-top: 20px;
+}
+
+/* FOOTER ------------------------------------------------------------------- */
+.container {
+    background-color: black;
+    border-style: solid;
+    width: 100%;
+    height: 180px;
+    padding: 0 0;
+    }
+  
+  .subcontainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  height: 100%;
+  }
+  
+  .footerTitle{
+  font-size: x-large;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  }
+  
+  .footerSubtitle{
+  font-size: large;
+  color: white;
+  text-align: center;
+  }
+  
+  .instaLogo{
+  width: 89px;
+  height: 50px;
+  }
+  
+  .xLogo{
+  width: 75px;
+  height: 50px;
+  }
+  
+  .perfilLogo {
+  width: 50px;
+  height: 50px;
+  }
+  
+  .footerList{
+  text-align: center;
+  color: rgb(0, 0, 0);
+  }
+  
+  .footerLink {
+  color: white;
+  text-decoration: none;
+  }
+  
+  .footerInfo p{
+  color:white;
+  }
+  
+  .footerInfo {
+  text-align: center;
+  }
+  
+  
