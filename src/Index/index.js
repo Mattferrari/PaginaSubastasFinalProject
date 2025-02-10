@@ -23,17 +23,17 @@
 // });
 
 
-let indice = 0;
+let currentSlide = 0; // Variable para mantener el índice de la diapositiva actual
 
-function moverCarrusel(direccion) {
-  const slides = document.querySelectorAll('.slide');
-  indice += direccion;
+function moverCarrusel(direction) {
+  const slides = document.querySelectorAll('.carousel .slide'); // Seleccionamos todas las diapositivas
 
-  if (indice < 0) {
-    indice = slides.length - 1;
-  } else if (indice >= slides.length) {
-    indice = 0;
-  }
-
-  document.querySelector('.carousel-content').transform = `translateX(${-indice * 100}%)`;
+  // Eliminar la clase 'active' de la diapositiva actual
+  slides[currentSlide].classList.remove('active');
+  
+  // Calculamos el siguiente índice de la diapositiva
+  currentSlide = (currentSlide + direction + slides.length) % slides.length;
+  
+  // Agregamos la clase 'active' a la nueva diapositiva
+  slides[currentSlide].classList.add('active');
 }

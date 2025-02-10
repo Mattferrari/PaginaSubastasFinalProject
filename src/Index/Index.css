@@ -114,14 +114,14 @@ body {
 }
 
 .slide {
-  display: flex;
   align-items: center;
   min-width: 100%;
   padding: 20px;
+  display: none;
 }
 
 .slide img {
-  width: 30%;
+  width: 20%;
   height: auto;
   border-radius: 10px;
 }
@@ -130,6 +130,11 @@ body {
   width: 60%;
   padding: 20px;
   text-align: left;
+}
+
+
+.carousel .slide.active {
+  display: flex; /* Muestra solo la diapositiva con la clase 'active' */
 }
 
 button.prev, button.next {
