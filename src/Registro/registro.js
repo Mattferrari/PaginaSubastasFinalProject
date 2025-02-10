@@ -1,13 +1,76 @@
-// correo
-const regexCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-document.getElementById('formulario').addEventListener('submit', function(e) {
-    const correo = document.getElementById('email').value;
-    
-    if (!regexCorreo.test(correo)) {
-        alert("Por favor, introduce un correo electrónico válido.");
-        e.preventDefault(); // Evita el envío del formulario
-    }
-    });
+// document.addEventListener("DOMContentLoaded", function() {
+//     const regexCorreo = /^[0-9]{9}@alu\.comillas\.edu$/;
+//     const formulario = document.getElementById('Formulario');
+//     const emailInput = document.getElementById('email');
+//     const nameInput = document.getElementById('name');
+//     const surnameInput = document.getElementById('Surname');
+//     const dniInput = document.getElementById('DNI');
+//     const passwordInput = document.getElementById('password');
+//     const confirmationInput = document.getElementById('confirmation');
+//     const usernameInput = document.getElementById('username');
+
+//     if (!formulario) return;
+
+//     formulario.addEventListener('submit', function(e) {
+//         // Restablecer todos los mensajes de error
+//         emailInput.setCustomValidity("");
+//         nameInput.setCustomValidity("");
+//         surnameInput.setCustomValidity("");
+//         dniInput.setCustomValidity("");
+//         passwordInput.setCustomValidity("");
+//         confirmationInput.setCustomValidity("");
+//         usernameInput.setCustomValidity("");
+
+        
+
+//         // Validación del nombre
+//         if (!nameInput.value.trim()) {
+//             nameInput.setCustomValidity("El nombre es un campo obligatorio.");
+//         }
+
+//         // Validación del apellido
+//         if (!surnameInput.value.trim()) {
+//             surnameInput.setCustomValidity("El apellido es un campo obligatorio.");
+//         }
+
+//         // Validación del DNI/NIE
+//         if (!dniInput.value.trim()) {
+//             dniInput.setCustomValidity("El DNI/NIE es un campo obligatorio.");
+//         }
+
+//         // Validación del correo electrónico
+//         if (!regexCorreo.test(emailInput.value)) {
+//             emailInput.setCustomValidity("Por favor, introduce un correo válido de la Universidad (Ej: 123456789@alu.comillas.edu).");
+//         }
+
+//         // Validación del nombre de usuario
+//         if (!usernameInput.value.trim()) {
+//             usernameInput.setCustomValidity("El nombre de usuario es un campo obligatorio.");
+//         }
+
+//         // Validación de la contraseña
+//         if (passwordInput.value.length < 8) {
+//             passwordInput.setCustomValidity("La contraseña debe tener al menos 8 caracteres.");
+//         }
+
+//         // Validación de la confirmación de contraseña
+//         if (confirmationInput.value !== passwordInput.value) {
+//             confirmationInput.setCustomValidity("Las contraseñas no coinciden.");
+//         }
+
+//         // Si hay algún mensaje de error, mostramos la alerta y evitamos el envío
+//         if (!formulario.checkValidity()) {
+//             e.preventDefault(); // Evita el envío del formulario
+//             emailInput.reportValidity();
+//             nameInput.reportValidity();
+//             surnameInput.reportValidity();
+//             dniInput.reportValidity();
+//             passwordInput.reportValidity();
+//             confirmationInput.reportValidity();
+//             usernameInput.reportValidity();
+//         }
+//     });
+// });
 
 // birth
 const dateField = document.getElementById("datebirth");
@@ -98,21 +161,37 @@ const lengthAlertDiv = document.querySelector(".PasswordLengthAlert");
 const minimumLen = 8
 
 
-
+let originalHeight = 900;
+let expandedConsistency = false;
+let expandedLength = false;
 
 /**
  * Returns a boolean that validates if both password and confirmation are equal.
  * @returns {boolean}
  */
 async function ValidatePasswordConsistency() {
+    const formulario = document.querySelector(".FormDiv");
+
+    if (!formulario) return;
     if(contrasena1.value === confirmation.value || confirmation.value.length === 0){
         confirmation.classList.remove("error")
         alertDiv.classList.add("hidden")
+        if (expandedConsistency) {
+            expandedConsistency = false
+            originalHeight = originalHeight - 50
+            formulario.style.height = (originalHeight) + "px"
+        }
         return true
     }
     else{
         confirmation.classList.add("error")
         alertDiv.classList.remove("hidden")
+        if (!expandedConsistency) {
+            originalHeight = originalHeight + 50
+            formulario.style.height = (originalHeight) + "px"
+            expandedConsistency = true
+        }
+        
         return false
     }
 }
@@ -124,14 +203,26 @@ async function ValidatePasswordConsistency() {
  * @returns {boolean} - The result
  */
 async function validatePasswordLength(event) {
+    const formulario = document.querySelector(".FormDiv");
     const passwordField = event.target;
     if (passwordField.value.length >= minimumLen || passwordField.value.length === 0) {
         passwordField.classList.remove("error");
         lengthAlertDiv.classList.add("hidden");
+        if (expandedLength) {
+            expandedLength = false
+            originalHeight = originalHeight - 50 
+            formulario.style.height = (originalHeight) + "px"
+        }
         return true
     } else {
         passwordField.classList.add("error");
         lengthAlertDiv.classList.remove("hidden")
+        if (!expandedLength) {
+            originalHeight = originalHeight + 50
+            expandedLength = true
+            formulario.style.height = (originalHeight) + "px"
+        }
+        
         return false
     }
 }
@@ -147,47 +238,99 @@ async function validatePasswords(event) {
     return isConsistent && isLenOk1 && isLenOk2
 }
 
-
+/**
+ * @param {event}
+ */
 async function validaterequirements(event) {
-    // name
-    const name = document.getElementById("name")
+    event.preventDefault(); // Evita el envío del formulario hasta validar todo
 
-    // surname
-    const surname = document.getElementById("Surname")
-
-    // DNI
-    const DNI = document.getElementById("DNI")
-
-    // contraseña
+    // Obtener los elementos del formulario
+    const regexCorreo = /^[0-9]{9}@alu\.comillas\.edu$/;
+    const emailInput = document.getElementById('email');
+    const name = document.getElementById("name");
+    const surname = document.getElementById("Surname");
+    const DNI = document.getElementById("DNI");
+    const username = document.getElementById("username"); // Agregado
     const contrasena1 = document.getElementById("password");
-    // confirmation
     const confirmation = document.getElementById("confirmation");
 
-    event.preventDefault();
-    const passwordsok = validatePasswords(event)
+    // Restablecer mensajes de error antes de validar
+    name.setCustomValidity("");
+    surname.setCustomValidity("");
+    DNI.setCustomValidity("");
+    emailInput.setCustomValidity("");
+    username.setCustomValidity("");
+    contrasena1.setCustomValidity("");
+    confirmation.setCustomValidity("");
+
+    // Restablecer los placeholders y quitar clase de error
+    name.placeholder = "Introduce tu nombre";
+    surname.placeholder = "Introduce tu apellido";
+    DNI.placeholder = "Introduce tu DNI/NIE";
+    emailInput.placeholder = "correo@alu.comillas.edu";
+    username.placeholder = "Elige tu nombre de usuario";
+    contrasena1.placeholder = "Contraseña (mínimo 8 caracteres)";
+    confirmation.placeholder = "Confirma tu contraseña";
+    
+    name.classList.remove("error");
+    surname.classList.remove("error");
+    DNI.classList.remove("error");
+    emailInput.classList.remove("error");
+    username.classList.remove("error");
+    contrasena1.classList.remove("error");
+    confirmation.classList.remove("error");
+
+    // Validar contraseñas (suponiendo que esta función devuelve `false` si son inválidas)
+    const passwordsok = validatePasswords(event);
     if (!passwordsok) {
+        return; // Detiene la validación si las contraseñas no coinciden
     }
-    else if (name.length === 0){
-        name.setCustomValidity("el nombre es un campo obligatorio.");
+
+    // Validaciones individuales
+    if (!name.value.trim()) {
+        name.setCustomValidity("El nombre es un campo obligatorio.");
+        name.placeholder = "***Nombre es obligatorio***";
+        name.classList.add("error"); // Añadir clase de error
     }
-    else if (surname.length === 0){
-        surname.setCustomValidity("el apellido es un campo obligatorio.");
+    if (!surname.value.trim()) {
+        surname.setCustomValidity("El apellido es un campo obligatorio.");
+        surname.placeholder = "***Apellido es obligatorio***";
+        surname.classList.add("error");
     }
-    else if (DNI.length === 0){
-        DNI.setCustomValidity("el DNI es un campo obligatorio.");
+    if (!DNI.value.trim()) {
+        DNI.setCustomValidity("El DNI es un campo obligatorio.");
+        DNI.placeholder = "***DNI/NIE es obligatorio***";
+        DNI.classList.add("error");
     }
-    else if (username.length === 0){
-        username.setCustomValidity("el nombre de usuario es un campo obligatorio.");
+    if (!regexCorreo.test(emailInput.value)) {
+        emailInput.setCustomValidity("Por favor, introduce un correo válido de la Universidad (Ej: 123456789@alu.comillas.edu).");
+        emailInput.placeholder = "***ej: 123456789@alu.comillas.edu***";
+        emailInput.classList.add("error");
     }
-    else if (confirmation.length === 0){
-        confirmation.setCustomValidity("la confirmación de contraseña es un campo obligatorio.");
+    if (!username.value.trim()) {
+        username.setCustomValidity("El nombre de usuario es un campo obligatorio.");
+        username.placeholder = "***Nombre de usuario es obligatorio***";
+        username.classList.add("error");
     }
-    else if (contrasena1.length === 0){
-        contrasena1.setCustomValidity("la contraseña es un campo obligatorio.");
+    if (!confirmation.value.trim()) {
+        confirmation.setCustomValidity("La confirmación de contraseña es un campo obligatorio.");
+        confirmation.placeholder = "***Confirmación de contraseña es obligatoria***";
+        confirmation.classList.add("error");
     }
-    else{
-        event.target.submit();
+    if (!contrasena1.value.trim()) {
+        contrasena1.setCustomValidity("La contraseña es un campo obligatorio.");
+        contrasena1.placeholder = "***Contraseña es obligatoria***";
+        contrasena1.classList.add("error");
     }
+
+    // Verificar si hay algún error
+    if (!event.target.checkValidity()) {
+        event.target.reportValidity(); // Muestra los mensajes de error del navegador
+        return;
+    }
+
+    // Si todo está bien, enviar el formulario
+    event.target.submit();
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -199,6 +342,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
     confirmation.addEventListener('input', validatePasswordLength);
     confirmation.addEventListener('input', ValidatePasswordConsistency);
 });
-
-
-

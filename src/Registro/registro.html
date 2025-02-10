@@ -37,7 +37,7 @@
       <a href="../Index/index.html"><img src="../../imgs/logoSubAstas.png" alt="Logo de sAPIens" class="Logo"></a>
       <div class="FormDiv">
       <h1 class="FormTitle">Formulario de registro</h1>
-      <form class="Formulario" method="post">
+      <form class="Formulario" method="post" novalidate>
         <label for="name" class="FormLabel">Nombre:</label>
         <br>
         <input type="text" id="name" name="name" class="FormInput" required placeholder="Matteo">
@@ -81,22 +81,20 @@
         <label for="confirmation" class="FormLabel">Confirma la contraseña:</label>
         <br>
         <input type="password" id="confirmation" name="confirmation" class="FormInput" required>
-        <br>
         <div class="PasswordRegistrationAlert hidden">
             <p>
                 The passwords are not the same!
             </p>
         </div>
-        <br>
         <div class="PasswordLengthAlert hidden">
             <p>
-                The password must be at least 8 characters long
+                The password must be at least 8 characters long!
             </p>
         </div>
         <br>
         <br>
-        <button type="submit" class="MoveButton">Enviar</button>
         <button type="reset" class="MoveButton">Limpiar</button>
+        <button type="submit" class="MoveButton" onclick="">Registrar</button>
         <br>
         <a href="../Index/Index.html"><img src="../../imgs/homeIcon2.jpeg" alt="" class="homeIcon"></a>
       </form>
