@@ -22,18 +22,23 @@ const cargarProducto = async () => {
         alert("Producto no encontrado");
         return;
     }
-    loadTime(producto);
+    if (producto.tiempo_fin){
+        loadTime(producto);
+    }
+    
     // load data to HTML
     document.getElementById("titulo").innerText = producto.title;
     document.getElementById("descripcion").innerText = producto.description;
     document.getElementById("precio").innerText = `${producto.price}`;
 
     // valor de la puja
-    const precioMinimo = producto.precio
+    const precioMinimo = producto?.precio
     const campoPuja = document.getElementById("puja");
     
-    campoPuja.value = precioMinimo;
-    campoPuja.setAttribute('min', precioMinimo);
+    if (precioMinimo){
+        campoPuja.value = precioMinimo;
+        campoPuja.setAttribute('min', precioMinimo);
+    }
 
     // Load images to HTML
     document.getElementById("imagenPrincipal").src = producto.images[0];
@@ -43,17 +48,20 @@ const cargarProducto = async () => {
     producto.images.forEach(img => {
         let imgElem = document.createElement("img");
         imgElem.src = img;
+        imgElem.className= "miniaturas"
         imgElem.onclick = () => document.getElementById("imagenPrincipal").src = img;
         miniaturasDiv.appendChild(imgElem);
     });
 
     // Historial de pujas
-    let historialElem = document.getElementById("historial");
-    producto.historial.forEach(puja => {
-        let li = document.createElement("li");
-        li.innerText = `${puja.usuario}: $${puja.oferta}`;
-        historialElem.appendChild(li);
-    });
+        let historialElem = document.getElementById("historial");
+        if (producto.historial){
+            producto.historial.forEach(puja => {
+                let li = document.createElement("li");
+                li.innerText = `${puja.usuario}: $${puja.oferta}`;
+                historialElem.appendChild(li);
+            });
+        }
 };
 
 async function loadTime(producto) {
@@ -96,7 +104,9 @@ async function pujar() {
     // obtain minimum up and calc new price
     const subidaMinima = producto.subida_minima || 10; // default value
     producto.precio = puja + subidaMinima;
-    producto.historial.unshift({ usuario: "Tú", oferta: puja });
+    if (producto.historial){
+        producto.historial.unshift({ usuario: "Tú", oferta: puja });
+    }
 
     // Actualizar la página con los nuevos datos
     actualizarDatosEnPantalla(producto);
@@ -106,17 +116,19 @@ async function pujar() {
  * Actualiza la web con los datos del producto tras una puja.
  */
 function actualizarDatosEnPantalla(producto) {
-    document.getElementById("precio").innerText = producto.precio;
-    document.getElementById("puja").value = producto.precio;
-    document.getElementById("puja").setAttribute("min", producto.precio);
+    document.getElementById("precio").innerText = producto.price;
+    document.getElementById("puja").value = producto.price;
+    document.getElementById("puja").setAttribute("min", producto.price);
 
     let historialElem = document.getElementById("historial");
+    if (producto.historial){
     historialElem.innerHTML = ""; // Limpiar historial
     producto.historial.forEach(puja => {
         let li = document.createElement("li");
         li.innerText = `${puja.usuario}: $${puja.oferta}`;
         historialElem.appendChild(li);
     });
+}
 }
 
 

@@ -4,6 +4,7 @@ async function cargarResultados() {
     if (!searchTag) return;
     
     try {
+        // const response = await fetch(""); 
         const response = await fetch("../Products/API_Data.json"); 
         const jsonresult = await response.json();
         const productos = jsonresult["products"];
@@ -30,10 +31,11 @@ function mostrarResultados(productos) {
     productos.forEach(producto => {
         const productoElemento = document.createElement("div");
         productoElemento.innerHTML = `
-            <img src="${producto.images[0]}" alt="${producto.title}">
+            <img src="${producto.images[0]}" alt="${producto.title}" class="image">
             <h2>${producto.title}</h2>
             <p>${producto.description}</p>
             <p><strong>Precio inicial:</strong> ${producto.price}€</p>
+            <hr>
         `;
         productoElemento.onclick = () => {
             window.location.href = `../Producto_Individual/product.html?id=${producto.id-1}`;
