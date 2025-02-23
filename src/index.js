@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
        // Esto ayuda a depurar en la consola
       if (query === "") {
-          query = "Medal"; // Si el campo está vacío, usa "Medal" como valor predeterminado
+          query = "beauty"; // Si el campo está vacío, usa "Medal" como valor predeterminado
       }
 
       console.log("Tag detectado:", query);
