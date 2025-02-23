@@ -339,9 +339,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function performSearch() {
         let query = searchInput.value.trim(); // Obtiene el valor del input y elimina espacios innecesarios
         if (query === "") {
-            query = "Medal"; // Si el campo está vacío, usa "Medal" como valor predeterminado
+            query = "beauty"; // Si el campo está vacío, usa "Medal" como valor predeterminado
         }
-        window.location.href = `http://localhost:8000/src/Resultados/resultados.html?tag=${encodeURIComponent(query)}`;
+        window.location.href = "../Resultados/resultados.html?tag=" + encodeURIComponent(query);
     }
 
     // Ejecutar búsqueda al presionar Enter

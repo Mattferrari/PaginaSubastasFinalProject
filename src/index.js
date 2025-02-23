@@ -37,16 +37,25 @@ function moverCarrusel(direction) {
   // Agregamos la clase 'active' a la nueva diapositiva
   slides[currentSlide].classList.add('active');
 }
+
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput");
   const searchButton = document.getElementById("searchButton");
 
+  console.log("Elemento searchInput:", searchInput);
+  console.log("Elemento searchButton:", searchButton);
+
+
   function performSearch() {
-      let query = searchInput.value.trim(); // Obtiene el valor del input y elimina espacios innecesarios
+      let query = searchInput.value // Obtiene el valor del input y elimina espacios innecesarios
+
+       // Esto ayuda a depurar en la consola
       if (query === "") {
           query = "Medal"; // Si el campo está vacío, usa "Medal" como valor predeterminado
       }
-      window.location.href = `http://localhost:8000/src/Resultados/resultados.html?tag=${encodeURIComponent(query)}`;
+
+      console.log("Tag detectado:", query);
+      window.location.href = "Resultados/resultados.html?tag=" + query;
   }
 
   // Ejecutar búsqueda al presionar Enter

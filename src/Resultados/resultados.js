@@ -1,23 +1,71 @@
+// async function cargarResultados() {
+//     const urlParams = new URLSearchParams(window.location.search);
+//     const searchTag = urlParams.get("tag");
+//     if (!searchTag) return;
+    
+//     try {
+
+//         // const response = await fetch("https://dummyjson.com/products")
+
+//         const jsonresult = fetch("https://dummyjson.com/products")
+//         .then(response => {
+//             console.log("Tipo de respuesta:", response);
+//             return response.json();  // Aquí es donde está fallando
+//         })
+//         .then(data => {
+//             console.log("Datos cargados:", data);
+//         })
+//         .catch(error => {
+//             console.error("Error al cargar los productos", error);
+//         });
+
+
+//         // const response = fetch("https://dummyjson.com/products", { cache: "no-store" })
+        
+//         // const response = await fetch("// const data = await fetch("https://dummyjson.com/products");
+//         // const response = await fetch("../Products/Pers_Products.json"); 
+//         // const jsonresult = await response.json();
+//         const productos = jsonresult["products"];
+        
+//         const resultados = productos.filter(producto => 
+//             producto.tags.some(tag => tag.toLowerCase() === searchTag.toLowerCase())
+//         ).slice(0, 10); // max 10
+        
+//         mostrarResultados(resultados);
+//     } catch (error) {
+//         console.error("Error al cargar los productos", error);
+//     }
+// }
+
+
 async function cargarResultados() {
     const urlParams = new URLSearchParams(window.location.search);
     const searchTag = urlParams.get("tag");
     if (!searchTag) return;
-    
+
     try {
-        // const response = await fetch("// const data = await fetch("https://dummyjson.com/products");
-        const response = await fetch("../Products/Pers_Products.json"); 
-        const jsonresult = await response.json();
-        const productos = jsonresult["products"];
-        
-        const resultados = productos.filter(producto => 
-            producto.tags.some(tag => tag.toLowerCase() === searchTag.toLowerCase())
+        const response = await fetch("https://dummyjson.com/products");
+
+        if (!response.ok) {
+            throw new Error(`Error en la respuesta: ${response.status}`);
+        }
+
+        const jsonresult = await response.json(); // Esperamos el JSON
+
+        console.log("Datos cargados:", jsonresult);
+
+        const productos = jsonresult["products"]; // Ahora sí existen los productos
+
+        const resultados = productos.filter(producto =>
+            producto.tags?.some(tag => tag.toLowerCase() === searchTag.toLowerCase())
         ).slice(0, 10); // max 10
-        
+
         mostrarResultados(resultados);
     } catch (error) {
         console.error("Error al cargar los productos", error);
     }
 }
+
 
 function mostrarResultados(productos) {
     const resultsDiv = document.getElementById("results");
@@ -52,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (query === "") {
             query = "Medal"; // Si el campo está vacío, usa "Medal" como valor predeterminado
         }
-        window.location.href = `http://localhost:8000/src/Resultados/resultados.html?tag=${encodeURIComponent(query)}`;
+        window.location.href = "Resultados/resultados.html?tag=" + encodeURIComponent(query);
     }
 
     // Ejecutar búsqueda al presionar Enter

@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (query === "") {
             query = "Medal"; // Si el campo está vacío, usa "Medal" como valor predeterminado
         }
-        window.location.href = `http://localhost:8000/src/Resultados/resultados.html?tag=${encodeURIComponent(query)}`;
+        window.location.href = "../Resultados/resultados.html?tag=" + encodeURIComponent(query);
     }
 
     // Ejecutar búsqueda al presionar Enter

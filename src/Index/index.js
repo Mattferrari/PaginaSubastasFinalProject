@@ -37,6 +37,8 @@ function moverCarrusel(direction) {
   // Agregamos la clase 'active' a la nueva diapositiva
   slides[currentSlide].classList.add('active');
 }
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput");
   const searchButton = document.getElementById("searchButton");
