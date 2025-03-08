@@ -38,34 +38,32 @@ function moverCarrusel(direction) {
   slides[currentSlide].classList.add('active');
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.getElementById("searchInput");
-  const searchButton = document.getElementById("searchButton");
+const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
 
-  console.log("Elemento searchInput:", searchInput);
-  console.log("Elemento searchButton:", searchButton);
+console.log("Elemento searchInput:", searchInput);
+console.log("Elemento searchButton:", searchButton);
 
 
-  function performSearch() {
-      let query = searchInput.value // Obtiene el valor del input y elimina espacios innecesarios
+function performSearch() {
+    let query = searchInput.value // Obtiene el valor del input y elimina espacios innecesarios
 
-       // Esto ayuda a depurar en la consola
-      if (query === "") {
-          query = "beauty"; // Si el campo está vacío, usa "Medal" como valor predeterminado
-      }
+      // Esto ayuda a depurar en la consola
+    if (query === "") {
+        query = "beauty"; // Si el campo está vacío, usa "Medal" como valor predeterminado
+    }
 
-      console.log("Tag detectado:", query);
-      window.location.href = "Resultados/resultados.html?tag=" + query;
-  }
+    console.log("Tag detectado:", query);
+    window.location.href = "Resultados/resultados.html?tag=" + query;
+}
 
-  // Ejecutar búsqueda al presionar Enter
-  searchInput.addEventListener("keypress", (event) => {
-      if (event.key === "Enter") {
-          event.preventDefault(); // Evita el comportamiento por defecto del formulario (si lo hubiera)
-          performSearch();
-      }
-  });
-
-  // Ejecutar búsqueda al hacer clic en el botón
-  searchButton.addEventListener("click", performSearch);
+// Ejecutar búsqueda al presionar Enter
+searchInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Evita el comportamiento por defecto del formulario (si lo hubiera)
+        performSearch();
+    }
 });
+
+// Ejecutar búsqueda al hacer clic en el botón
+searchButton.addEventListener("click", performSearch);
