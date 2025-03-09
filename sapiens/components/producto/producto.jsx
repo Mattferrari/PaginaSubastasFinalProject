@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import styles from "./styles.producto.css";
+import { useRouter } from "next/navigation";
+
 
 const Producto = ({ producto }) => {
     const [detailData, setDetailData] = useState({
@@ -32,11 +34,11 @@ const Producto = ({ producto }) => {
                 <img
                     src={detailData.galeria.imagenPrincipal}
                     alt="Imagen del producto"
-                    onClick={() => window.location.href = `../detalle/${detailData.id}`} // Redirigir al detalle del producto
+                    onClick={() => window.location.href = `../../detalle/${detailData.id}`} 
                 />
             </div>
 
-            <h1 onClick={() => window.location.href = `../detalle/${detailData.id}`}>{detailData.titulo}</h1>
+            <h1 onClick={() => window.location.href = `../../detalle/${detailData.id}`}>{detailData.titulo}</h1>
 
             <p>{detailData.descripcion}</p>
             

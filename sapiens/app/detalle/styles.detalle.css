@@ -54,7 +54,6 @@ h1 {
     transform: scale(1.1);
 }
 
-/* Descripción del producto */
 p {
     font-size: 1rem;
     line-height: 1.5;
@@ -62,7 +61,6 @@ p {
     text-align: center;
 }
 
-/* Estilos para las pujas y precio */
 input[type="number"] {
     font-size: 1.2rem;
     padding: 10px;
@@ -117,7 +115,6 @@ ul li {
     justify-content: space-between;
 }
 
-/* Mensajes de error */
 p.error {
     color: red;
     font-weight: bold;
@@ -125,7 +122,6 @@ p.error {
     margin-top: 10px;
 }
 
-/* Layout contenedor */
 .container {
     display: flex;
     justify-content: center;
