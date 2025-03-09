@@ -1,7 +1,9 @@
 import React from "react";
 import "./styles.header.css"; 
+import Link from "next/link";
 
 const Header = () => {
+
   return (
     <header>
       {/* Primera barra de navegación */}
@@ -14,32 +16,34 @@ const Header = () => {
         </div>
 
         <div className="auth-links">
-          <a href="../LogIn/LogIn.html">
+ 
+          <Link href="/inicio">
             <button>Iniciar sesión</button>
-          </a>
-          <a href="../Registro/registro.html">
+          </Link>
+
+          <Link href="/registro">
             <button>Registrarse</button>
-          </a>
+          </Link>
         </div>
       </nav>
 
       {/* Segunda barra de navegación */}
       <nav className="menu-bar">
-        <a href="../index.html">
+        <Link href="/">
           <span className="icon">🏠</span>Inicio
-        </a>
-        <a href="#">
+        </Link>
+        <Link href="/subastas">
           <span className="icon">📦</span>Productos
-        </a>
-        <a href="#">
+        </Link>
+        <Link href="/subastas">
           <span className="icon">🛒</span>Carrito
-        </a>
-        <a href="#">
+        </Link>
+        <Link href="/subastas">
           <span className="icon">📄</span>Mis Compras
-        </a>
-        <a href="#">
+        </Link>
+        <Link href="/subastas">
           <span className="icon">⚙️</span>Configuración
-        </a>
+        </Link>
       </nav>
     </header>
   );

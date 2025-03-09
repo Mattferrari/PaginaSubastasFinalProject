@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";  // Si estás usando react-router-dom
 
