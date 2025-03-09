@@ -13,6 +13,7 @@ const LogIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState("");
+  const [valid, setvalid] = useState("")
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,28 +32,29 @@ const LogIn = () => {
         });
 
         if (!response.ok) {
-            setError("Usuario no existente")
+            setError("Ha habido un problema")
+        }
+        else {
+            setvalid("Registrado con exito")
         }
 
         const data = await response.json();
         console.log("Login exitoso:", data);
 
         // Guardar el token en localStorage para futuras peticiones
-        localStorage.setItem("accessToken", data.access);
+        localStorage.setItem("token", data.access);
         localStorage.setItem("username", data.username);
+        location.href = "../"
         
-        alert("Inicio de sesión exitoso");
     } catch (error) {
         console.error("Error en el login:", error);
-        alert("Usuario o contraseña incorrectos");
+        setError("Usuario o contraseña incorrectos")
     }
 };
-
 
   return (
     <div>
       <Header />
-
       <main>
         <Link href="/"><img src="../imgs/logoSubAstas.png" alt="Logo de sAPIens" className="Logo" /></Link>
         <div className="LogInArea">
@@ -91,6 +93,8 @@ const LogIn = () => {
             <button type="reset" className="SendButton">Limpiar</button>
             <button type="submit" className="SendButton">Enviar</button>
             <br />
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            {valid && <p style={{ color: "green" }}>{valid}</p>}
           </form>
           <p className="LogInFields">
             <Link href="/">

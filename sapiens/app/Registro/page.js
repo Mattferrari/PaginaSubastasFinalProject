@@ -37,7 +37,7 @@ const Register = () => {
                 password: formData.password,
                 first_name: formData.name,
                 last_name: formData.surname,
-                birth_date: formData.birthdate, // Asegúrate de que esté en formato "YYYY-MM-DD"
+                birth_date: formData.birthdate, 
                 locality: formData.ciudad,
                 municipality: formData.comunidad
             }),

@@ -16,17 +16,20 @@ const Profile = () => {
         ciudad: "",
     });
     const [error, setError] = useState("");
-    const accessToken = "";
 
     useEffect(() => {
         const handleGetProfile = async () => {
             try {
+                let token = localStorage.getItem("token");
+                console.log(token)
                 const response = await fetch("https://das-p2-backend.onrender.com/api/users/profile/", {
                     method: "GET",
                     headers: {
-                        "Authorization": `Bearer ${accessToken}`,
+                        "Authorization": `Bearer ${token}`,
                     },
                 });
+
+
 
                 if (response.ok) {
                     const data = await response.json();
@@ -39,6 +42,7 @@ const Profile = () => {
                         comunidad: data.locality,
                         ciudad: data.municipality,
                     });
+                    console.log(data)
                 } else {
                     console.error("Error al obtener el perfil:", response.statusText);
                     setError("Error al obtener el perfil");
