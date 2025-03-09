@@ -12,16 +12,45 @@ import Link from "next/link";
 const LogIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Aquí manejarías la lógica de login, por ejemplo, validando con una API.
+    handleLogin(username, password)
     console.log('Iniciar sesión con:', username, password);
   };
 
+  const handleLogin = async (username, password) => {
+    try {
+        const response = await fetch("https://das-p2-backend.onrender.com/api/users/login/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+        });
+
+        if (!response.ok) {
+            setError("Usuario no existente")
+        }
+
+        const data = await response.json();
+        console.log("Login exitoso:", data);
+
+        // Guardar el token en localStorage para futuras peticiones
+        localStorage.setItem("accessToken", data.access);
+        localStorage.setItem("username", data.username);
+        
+        alert("Inicio de sesión exitoso");
+    } catch (error) {
+        console.error("Error en el login:", error);
+        alert("Usuario o contraseña incorrectos");
+    }
+};
+
+
   return (
     <div>
-      {/* Aquí importamos el Header ya hecho */}
       <Header />
 
       <main>
@@ -71,7 +100,6 @@ const LogIn = () => {
         </div>
       </main>
 
-      {/* Aquí importamos el Footer ya hecho */}
       <Footer />
     </div>
   );

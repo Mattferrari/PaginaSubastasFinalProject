@@ -23,7 +23,7 @@ const Detalle = () => {
 
     useEffect(() => {
         const fetchProductData = async () => {
-            const response = await fetch("ruta");  // TODO: añadir la ruta correcta al JSON de datos
+            const response = await fetch("../../API_Data.json");  // TODO: añadir la ruta correcta al JSON de datos
             const data = await response.json();
             const producto = data.products.find(product => product.id === parseInt(id));
             if (producto) {

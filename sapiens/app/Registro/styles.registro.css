@@ -1,112 +1,44 @@
-/* * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
- */
 
- body {
-  
-    background-color: rgb(255, 255, 255);
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    display: grid;
-    grid-template-rows: auto 1fr auto; 
-  }
-  
-  header {
-    background-color: #000000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
   main {
     margin: 2.5%;
-    height: 60%;
+    height: 70%;
   }
-  
-  footer {
-    margin-top: 1%;
-    background: #000000;
-    text-align: center;
-    padding: 20px;
-    height: 250px;
-  }
-  
-  .nav-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-  }
-  
-  .logo {
-    font-size: 1.5em;
-    color: #ffffff;
+
+  .FormLabel {
+    font-size: 1rem;
     font-weight: bold;
+    color: #000;
+    display: block;
+    margin-bottom: 5px;
   }
   
-  .search-container {
-    flex-grow: 1;
-    margin: 0 20px;
-  }
-  
-  .search-container input[type="text"] {
-    width: 90%;
+  .FormInput {
+    width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1em;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 2px solid #000;
+    font-size: 1rem;
   }
   
-  .auth-links {
-    display: flex;
-    gap: 15px;
+  .FormInput:focus {
+    box-shadow: 0 0 5px 2px #007bff; 
+    background-color: #f0f8ff;
+    outline: none;
   }
   
-  .auth-links button {
-    text-decoration: none;
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-    border-radius: 5%;
-    width: 150px;
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  select {
     height: 50px;
-    border-style: none;
+  }
+
+  .error {
+    color: red;
   }
   
-  .auth-links button:hover {
-    background-color: #dedeff;
-    cursor: pointer;
-  }
-  
-  .menu-bar {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 10px 0;
-    border-top: 1px solid #ddd;
-  }
-  
-  .menu-bar a {
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 1em;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-  }
-  
-  .menu-bar a:hover {
-    background-color: #322d2d;
-  }
-  
-  .icon {
-    margin-right: 5px;
-    font-size: 1.2em;
-  }
   
   /* main ----------------------------------------------------------------------- */
   
@@ -138,7 +70,6 @@
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
   }
   
-  /* Estilo para los placeholders con error */
   input.error::placeholder {
     color: red;
   }
@@ -215,72 +146,6 @@
   .PasswordLengthAlert p {
     font-size: medium;
     font-style: italic;
-  }
-  
-  /* fin sección de código propusta por IA */
-  
-  
-  
-  
-  /* FOOTER ------------------------------------------------------------------- */
-  .container {
-    background-color: black;
-    border-style: solid;
-    width: 100%;
-    height: 200px;
-    padding: 0 0;
-  }
-  
-  .subcontainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  width: 100%;
-  height: 100%;
-  }
-  
-  .footerTitle{
-  font-size: x-large;
-  color: rgb(255, 255, 255);
-  text-align: center;
-  }
-  
-  .footerSubtitle{
-  font-size: large;
-  color: white;
-  text-align: center;
-  }
-  
-  .instaLogo{
-  width: 89px;
-  height: 50px;
-  }
-  
-  .xLogo{
-  width: 75px;
-  height: 50px;
-  }
-  
-  .perfilLogo {
-  width: 50px;
-  height: 50px;
-  }
-  
-  .footerList{
-  text-align: center;
-  color: rgb(0, 0, 0);
-  }
-  
-  .footerLink {
-  color: white;
-  text-decoration: none;
-  }
-  
-  .footerInfo p{
-  color:white;
-  }
-  
-  .footerInfo {
-  text-align: center;
   }
   
   
