@@ -12,7 +12,7 @@
                 "../../imgs/productos/purple_heart/4.jpg",
                 "../../imgs/productos/purple_heart/5.jpg"
             ],
-            "price": 3,
+            "max_puja": 2,
             "dimensions": {
                 "width": 5,
                 "height": 10,
@@ -45,7 +45,7 @@
             
             ],
             "description": "Medalla de la Cruz de Hierro de la Primera Guerra Mundial (1914), considerada un artículo histórico.",
-            "price": 2,
+            "max_puja": 2,
             "weight": 0.1,
             "dimensions": {
                 "width": 5,
