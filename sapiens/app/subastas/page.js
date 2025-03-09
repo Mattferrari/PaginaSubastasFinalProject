@@ -69,12 +69,19 @@ const ListaProductos = () => {
 
   const productosFiltrados = productos.filter(producto => {
     const matchesNombre = producto.title.toLowerCase().includes(filtros.nombre.toLowerCase());
+    console.log('filtros.categoria', filtros.categoria);
     const matchesCategoria = filtros.categoria ? producto.tags.includes(filtros.categoria) : true;
-    const precioActual = producto.max_puja + producto.subida_minima;
+    const precioActual = producto.price;
     const matchesPrecio = (filtros.minPrecio <= precioActual && (filtros.maxPrecio >= precioActual || filtros.maxPrecio === Infinity));
 
+    // console.log('Producto:', producto.tags, 'Filtros:', filtros, 'matchesCategoria:', matchesCategoria);
+    console.log(`matchesNombre: ${matchesNombre}, matches Categoria: ${matchesCategoria}, matchesPrecio: ${matchesPrecio}`);
+    console.log(`${filtros.maxPrecio} ${filtros.minPrecio} ${precioActual}`)
+    console.log(`${filtros.minPrecio <= precioActual}`)
     return matchesNombre && matchesCategoria && matchesPrecio;
   });
+
+  console.log('Productos filtrados:', productosFiltrados);
 
   return (
     <div>
