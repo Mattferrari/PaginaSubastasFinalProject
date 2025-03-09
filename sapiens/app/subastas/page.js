@@ -11,7 +11,7 @@ const ListaProductos = () => {
   const [productos, setProductos] = useState([]);
   const [filtros, setFiltros] = useState({
     nombre: "",
-    categorias: [],
+    categoria: "", // Solo una categoría seleccionable
     minPrecio: 0,
     maxPrecio: Infinity,
   });
@@ -23,10 +23,10 @@ const ListaProductos = () => {
         const response = await fetch("https://dummyjson.com/products");
         const data = await response.json();
 
-        // Asegurarte de que la respuesta es un objeto que contiene 'products'
+        // Asegúrate de que la respuesta es un objeto que contiene 'products'
         if (Array.isArray(data.products)) {
-          setProductos(data.products);  // Asigna los productos correctamente
-          
+          setProductos(data.products);
+
           const tagsUnicos = new Set();
           data.products.forEach(producto => {
             producto.tags.forEach(tag => tagsUnicos.add(tag));
@@ -44,13 +44,11 @@ const ListaProductos = () => {
   }, []);
 
   const handleChange = (e) => {
-    const { name, value, checked } = e.target;
-    if (name === "categorias") {
+    const { name, value } = e.target;
+    if (name === "categoria") {
       setFiltros((prevFiltros) => ({
         ...prevFiltros,
-        categorias: checked
-          ? [...prevFiltros.categorias, value]
-          : prevFiltros.categorias.filter(categoria => categoria !== value),
+        categoria: value, // Actualizamos solo una categoría seleccionada
       }));
     } else {
       const numericValue = parseFloat(value);
@@ -71,11 +69,11 @@ const ListaProductos = () => {
 
   const productosFiltrados = productos.filter(producto => {
     const matchesNombre = producto.title.toLowerCase().includes(filtros.nombre.toLowerCase());
-    const matchesCategorias = filtros.categorias.every(categoria => producto.tags.includes(categoria));
+    const matchesCategoria = filtros.categoria ? producto.tags.includes(filtros.categoria) : true;
     const precioActual = producto.max_puja + producto.subida_minima;
     const matchesPrecio = (filtros.minPrecio <= precioActual && (filtros.maxPrecio >= precioActual || filtros.maxPrecio === Infinity));
 
-    return matchesNombre && matchesCategorias && matchesPrecio;
+    return matchesNombre && matchesCategoria && matchesPrecio;
   });
 
   return (
@@ -110,19 +108,14 @@ const ListaProductos = () => {
           />
           <div>
             <h2>Categorías</h2>
-            {categorias.map(categoria => (
-              <div key={categoria}>
-                <label>
-                  <input
-                    type="checkbox"
-                    name="categorias"
-                    value={categoria}
-                    onChange={handleChange}
-                  />
+            <select name="categoria" value={filtros.categoria} onChange={handleChange}>
+              <option value="">Seleccionar categoría</option>
+              {categorias.map(categoria => (
+                <option key={categoria} value={categoria}>
                   {categoria}
-                </label>
-              </div>
-            ))}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <div className="productos">
