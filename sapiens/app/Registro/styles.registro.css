@@ -1,0 +1,151 @@
+
+  main {
+    margin: 2.5%;
+    height: 70%;
+  }
+
+  .FormLabel {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .FormInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 2px solid #000;
+    font-size: 1rem;
+  }
+  
+  .FormInput:focus {
+    box-shadow: 0 0 5px 2px #007bff; 
+    background-color: #f0f8ff;
+    outline: none;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  select {
+    height: 50px;
+  }
+
+  .error {
+    color: red;
+  }
+  
+  
+  /* main ----------------------------------------------------------------------- */
+  
+  .FormDiv {
+    background-color: rgb(210, 228, 249);
+    border-radius: 5%;
+    border-style: solid;
+    width: 50%;
+    height: 900px;
+    margin-left: 25%;
+    margin-top: 10px;
+  }
+  
+  .Formulario {
+    display: block;
+    text-align: center;
+  }
+  
+  .FormInput {
+    border-style: solid;
+    width: 40%;
+    height: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .FormInput:focus-within {
+    background-color: rgb(210, 228, 249);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
+  }
+  
+  input.error::placeholder {
+    color: red;
+  }
+  
+  .FormTitle {
+    text-align: center;
+  }
+  
+  .homeIcon {
+    width: 60px;
+    height: 50px;
+    margin-top: 10px;
+  }
+  
+  .homeIcon:hover {
+    transform: scale(1.05);
+  }
+  
+  .MoveButton {
+    border-radius: 5px;
+      width: 20%;
+      height: 40px;
+  }
+  
+  .MoveButton:hover {
+    width: 21%;
+    height: 42px;
+    background-color: rgb(163, 170, 252);
+  }
+  
+  .Logo {
+    width: 15%;
+    height: 15%;
+    margin-left: 42.5%;
+    margin-top: 20px;
+  }
+  
+  .error {
+      border-style: solid;
+      border-color: red;
+  }
+  .hidden {
+    display: none;
+  }
+  
+  .PasswordRegistrationAlert {
+    border-color: red;
+    color: red;
+    border-radius: 5%;
+    border-style: dashed;
+    background-color: white;
+    width: 40%;
+    height: 10%;
+    margin-left: 30%;
+    
+  }
+  
+  .PasswordRegistrationAlert p {
+    font-size: medium;
+    font-style: italic;
+  }
+  
+  .PasswordLengthAlert {
+    border-color: red;
+    color: red;
+    border-radius: 5%;
+    border-style: dashed;
+    background-color: white;
+    width: 40%;
+    height: 10%;
+    margin-left: 30%;
+  }
+  
+  .PasswordLengthAlert p {
+    font-size: medium;
+    font-style: italic;
+  }
+  
+  

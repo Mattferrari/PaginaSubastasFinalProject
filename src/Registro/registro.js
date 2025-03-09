@@ -1,76 +1,3 @@
-// document.addEventListener("DOMContentLoaded", function() {
-//     const regexCorreo = /^[0-9]{9}@alu\.comillas\.edu$/;
-//     const formulario = document.getElementById('Formulario');
-//     const emailInput = document.getElementById('email');
-//     const nameInput = document.getElementById('name');
-//     const surnameInput = document.getElementById('Surname');
-//     const dniInput = document.getElementById('DNI');
-//     const passwordInput = document.getElementById('password');
-//     const confirmationInput = document.getElementById('confirmation');
-//     const usernameInput = document.getElementById('username');
-
-//     if (!formulario) return;
-
-//     formulario.addEventListener('submit', function(e) {
-//         // Restablecer todos los mensajes de error
-//         emailInput.setCustomValidity("");
-//         nameInput.setCustomValidity("");
-//         surnameInput.setCustomValidity("");
-//         dniInput.setCustomValidity("");
-//         passwordInput.setCustomValidity("");
-//         confirmationInput.setCustomValidity("");
-//         usernameInput.setCustomValidity("");
-
-        
-
-//         // Validación del nombre
-//         if (!nameInput.value.trim()) {
-//             nameInput.setCustomValidity("El nombre es un campo obligatorio.");
-//         }
-
-//         // Validación del apellido
-//         if (!surnameInput.value.trim()) {
-//             surnameInput.setCustomValidity("El apellido es un campo obligatorio.");
-//         }
-
-//         // Validación del DNI/NIE
-//         if (!dniInput.value.trim()) {
-//             dniInput.setCustomValidity("El DNI/NIE es un campo obligatorio.");
-//         }
-
-//         // Validación del correo electrónico
-//         if (!regexCorreo.test(emailInput.value)) {
-//             emailInput.setCustomValidity("Por favor, introduce un correo válido de la Universidad (Ej: 123456789@alu.comillas.edu).");
-//         }
-
-//         // Validación del nombre de usuario
-//         if (!usernameInput.value.trim()) {
-//             usernameInput.setCustomValidity("El nombre de usuario es un campo obligatorio.");
-//         }
-
-//         // Validación de la contraseña
-//         if (passwordInput.value.length < 8) {
-//             passwordInput.setCustomValidity("La contraseña debe tener al menos 8 caracteres.");
-//         }
-
-//         // Validación de la confirmación de contraseña
-//         if (confirmationInput.value !== passwordInput.value) {
-//             confirmationInput.setCustomValidity("Las contraseñas no coinciden.");
-//         }
-
-//         // Si hay algún mensaje de error, mostramos la alerta y evitamos el envío
-//         if (!formulario.checkValidity()) {
-//             e.preventDefault(); // Evita el envío del formulario
-//             emailInput.reportValidity();
-//             nameInput.reportValidity();
-//             surnameInput.reportValidity();
-//             dniInput.reportValidity();
-//             passwordInput.reportValidity();
-//             confirmationInput.reportValidity();
-//             usernameInput.reportValidity();
-//         }
-//     });
-// });
 
 // birth
 const dateField = document.getElementById("datebirth");
@@ -339,9 +266,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function performSearch() {
         let query = searchInput.value.trim(); // Obtiene el valor del input y elimina espacios innecesarios
         if (query === "") {
-            query = "Medal"; // Si el campo está vacío, usa "Medal" como valor predeterminado
+            query = "beauty"; // Si el campo está vacío, usa "Medal" como valor predeterminado
         }
-        window.location.href = `http://localhost:8000/src/Resultados/resultados.html?tag=${encodeURIComponent(query)}`;
+        window.location.href = "../Resultados/resultados.html?tag=" + encodeURIComponent(query);
     }
 
     // Ejecutar búsqueda al presionar Enter
@@ -356,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
     searchButton.addEventListener("click", performSearch);
 });
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
     form.onsubmit = validaterequirements;
 
