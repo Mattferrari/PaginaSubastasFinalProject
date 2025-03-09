@@ -283,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
     searchButton.addEventListener("click", performSearch);
 });
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
     form.onsubmit = validaterequirements;
 
