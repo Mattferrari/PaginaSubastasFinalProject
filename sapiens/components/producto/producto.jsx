@@ -1,7 +1,7 @@
 "use client";  
 
 import React, { useState, useEffect } from "react";
-import styles from "./Product.styles.css";
+import styles from "./styles.producto.css";
 
 const Producto = ({ producto }) => {
     const [detailData, setDetailData] = useState({
@@ -11,7 +11,6 @@ const Producto = ({ producto }) => {
         },
         descripcion: "",
         precio: 0,
-        categoria: "",
         id: 0,
     });
 
@@ -22,23 +21,22 @@ const Producto = ({ producto }) => {
                 galeria: { imagenPrincipal: producto.images[0] },
                 descripcion: producto.description,
                 precio: producto.price,
-                categoria: producto.tags[0] || "Sin categoría", // Mostramos el primer tag o 'Sin categoría'
                 id: producto.id,
             });
         }
     }, [producto]);
 
     return (
-        <div className={styles.producto}>
-            <div className={styles.galeria}>
+        <div className="producto">
+            <div className="galeria">
                 <img
                     src={detailData.galeria.imagenPrincipal}
                     alt="Imagen del producto"
-                    onClick={() => window.location.href = `/detalle/${detailData.id}`} // Redirigir al detalle del producto
+                    onClick={() => window.location.href = `../detalle/${detailData.id}`} // Redirigir al detalle del producto
                 />
             </div>
 
-            <h1>{detailData.titulo}</h1>
+            <h1 onClick={() => window.location.href = `../detalle/${detailData.id}`}>{detailData.titulo}</h1>
 
             <p>{detailData.descripcion}</p>
             
@@ -46,10 +44,6 @@ const Producto = ({ producto }) => {
                 Precio: <b>$</b>
                 <strong>{detailData.precio}</strong>
             </p>
-
-            <p>Categoría: {detailData.categoria}</p>
-
-            <hr />
         </div>
     );
 };
