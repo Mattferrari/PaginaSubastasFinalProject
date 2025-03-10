@@ -127,7 +127,7 @@ const ListaProductos = () => {
         </div>
         <div className="productos">
           {productosFiltrados.length > 0 ? (
-            productosFiltrados.map(producto => (
+            productosFiltrados.slice(0, 9).map(producto => (
               <Producto key={producto.id} producto={producto} />
             ))
           ) : (

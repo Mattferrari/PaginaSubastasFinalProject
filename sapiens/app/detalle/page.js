@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";  // ✅ Usa el enrutador de Next.js
+import { useParams } from "next/navigation";  
 import styles from "./styles.detalle.css";
 
 const Detalle = () => {
-    const searchParams = useSearchParams();
-    const id = searchParams.get("id");  // ✅ Obtiene el ID de la URL
-
+    const params = useParams(); 
+    const id = params.id; // Obtener el ID de la URL
+    
     const [detailData, setDetailData] = useState({
         title: "Producto no encontrado",
         galeria: {
