@@ -1,46 +1,74 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import Producto from "../../components/producto/producto";
+import Subasta from "../../components/producto/producto";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import styles from "./styles.subastas.css";
+import Producto from "../../components/producto/producto";
+import Link from "next/link";
 
-const ListaProductos = () => {
-  const [productos, setProductos] = useState([]);
+
+const ListaSubastas = () => {
+  const [subastas, setSubastas] = useState([]);
+  const [categorias, setCategorias] = useState([]);
   const [filtros, setFiltros] = useState({
     nombre: "",
     categoria: "", // Solo una categoría seleccionable
     minPrecio: 0,
     maxPrecio: Infinity,
   });
-  const [categorias, setCategorias] = useState([]);
 
+  // Obtener categorías del backend
   useEffect(() => {
-    const cargarProductos = async () => {
+    const cargarCategorias = async () => {
       try {
-        const response = await fetch("https://dummyjson.com/products");
+        const response = await fetch("http://127.0.0.1:8000/api/auctions/subastas/categorias/"); // Suponiendo que tienes un endpoint para las categorías
         const data = await response.json();
 
-        // Asegúrate de que la respuesta es un objeto que contiene 'products'
-        if (Array.isArray(data.products)) {
-          setProductos(data.products);
-
-          const tagsUnicos = new Set();
-          data.products.forEach(producto => {
-            producto.tags.forEach(tag => tagsUnicos.add(tag));
-          });
-          setCategorias([...tagsUnicos]);
-        } else {
-          console.error("Error: data.products no es un array", data);
+        if (Array.isArray(data.results)) {
+          setCategorias(data.results); // Guardar las categorías en el estado
         }
+        // else {
+        //   console.error("Error: data no es un array", data);
+        // }
       } catch (error) {
-        console.error("Error al cargar productos:", error);
+        console.error("Error al cargar categorías:", error);
       }
     };
 
-    cargarProductos();
+    cargarCategorias();
+  }, []);
+
+  useEffect(() => {
+    const cargarSubastas = async () => {
+      let allsubastas = [];
+      let url = "http://127.0.0.1:8000/api/auctions/subastas/";
+
+      try {
+        while (url) {
+          const response = await fetch(url);
+          const data = await response.json();
+
+          if (Array.isArray(data.results)) {
+            allsubastas = [...allsubastas, ...data.results];
+          }
+
+          // Romper si no hay más resultados
+          if (!data.next || data.results.length === 0) {
+            break;
+          }
+
+          url = data.next;
+        }
+
+        setSubastas(allsubastas);
+      } catch (error) {
+        console.error("Error al cargar subastas paginadas:", error);
+      }
+    };
+
+    cargarSubastas();
   }, []);
 
   const handleChange = (e) => {
@@ -48,7 +76,7 @@ const ListaProductos = () => {
     if (name === "categoria") {
       setFiltros((prevFiltros) => ({
         ...prevFiltros,
-        categoria: value, // Actualizamos solo una categoría seleccionada
+        categoria: parseInt(value), // Actualizamos solo una categoría seleccionada
       }));
     } else {
       const numericValue = parseFloat(value);
@@ -67,27 +95,20 @@ const ListaProductos = () => {
     }
   };
 
-  const productosFiltrados = productos.filter(producto => {
-    const matchesNombre = producto.title.toLowerCase().includes(filtros.nombre.toLowerCase());
-    console.log('filtros.categoria', filtros.categoria);
-    const matchesCategoria = filtros.categoria ? producto.tags.includes(filtros.categoria) : true;
-    const precioActual = producto.price;
+  const subastasFiltradas = subastas?.filter(subasta => {
+    const matchesNombre = subasta.title.toLowerCase().includes(filtros.nombre.toLowerCase());
+    const matchesCategoria = filtros.categoria ? subasta.category === filtros.categoria : true;
+    const precioActual = subasta.price;
     const matchesPrecio = (filtros.minPrecio <= precioActual && (filtros.maxPrecio >= precioActual || filtros.maxPrecio === Infinity));
 
-    // console.log('Producto:', producto.tags, 'Filtros:', filtros, 'matchesCategoria:', matchesCategoria);
-    console.log(`matchesNombre: ${matchesNombre}, matches Categoria: ${matchesCategoria}, matchesPrecio: ${matchesPrecio}`);
-    console.log(`${filtros.maxPrecio} ${filtros.minPrecio} ${precioActual}`)
-    console.log(`${filtros.minPrecio <= precioActual}`)
     return matchesNombre && matchesCategoria && matchesPrecio;
   });
-
-  console.log('Productos filtrados:', productosFiltrados);
 
   return (
     <div>
       <Header />
       <main>
-        <h1>Listado de Productos</h1>
+        <h1>Listado de Subastas</h1>
         <div>
           <input
             className="inputs"
@@ -117,27 +138,31 @@ const ListaProductos = () => {
             <h2>Categorías</h2>
             <select name="categoria" value={filtros.categoria} onChange={handleChange}>
               <option value="">Seleccionar categoría</option>
-              {categorias.map(categoria => (
-                <option key={categoria} value={categoria}>
-                  {categoria}
+              {categorias?.map(categoria => (
+                <option key={categoria.id} value={categoria.id}> {/* Asumiendo que tienes un id y nombre para cada categoría */}
+                  {categoria.name}
                 </option>
               ))}
             </select>
           </div>
         </div>
-        <div className="productos">
-          {productosFiltrados.length > 0 ? (
-            productosFiltrados.map(producto => (
-              <Producto key={producto.id} producto={producto} />
+        <div className="subastas">
+          {subastasFiltradas.length > 0 ? (
+            subastasFiltradas.slice(0, 6)?.map(subasta => (
+              <Producto key={subasta.id} producto={subasta} />
             ))
           ) : (
-            <div>Producto no encontrado</div>
+            <div>Subasta no encontrada</div>
           )}
         </div>
+        <Link href="/subastas/nueva">
+          <button>Nueva subasta</button>
+        </Link>
+
       </main>
       <Footer />
     </div>
   );
 };
 
-export default ListaProductos;
+export default ListaSubastas;
