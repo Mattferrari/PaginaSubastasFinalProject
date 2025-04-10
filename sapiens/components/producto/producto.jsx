@@ -1,4 +1,4 @@
-"use client";  
+"use client";
 
 import React, { useState, useEffect } from "react";
 import styles from "./styles.producto.css";
@@ -20,7 +20,7 @@ const Producto = ({ producto }) => {
         if (producto) {
             setDetailData({
                 titulo: producto.title,
-                galeria: { imagenPrincipal: producto.images[0] },
+                galeria: { imagenPrincipal: producto?.thumbnail || "" },
                 descripcion: producto.description,
                 precio: producto.price,
                 id: producto.id,
@@ -34,14 +34,14 @@ const Producto = ({ producto }) => {
                 <img
                     src={detailData.galeria.imagenPrincipal}
                     alt="Imagen del producto"
-                    onClick={() => window.location.href = `../../detalle/${detailData.id}`} 
+                    onClick={() => window.location.href = `../../detalle/${detailData.id}`}
                 />
             </div>
 
             <h1 onClick={() => window.location.href = `../../detalle/${detailData.id}`}>{detailData.titulo}</h1>
 
             <p>{detailData.descripcion}</p>
-            
+
             <p>
                 Precio: <b>$</b>
                 <strong>{detailData.precio}</strong>

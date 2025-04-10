@@ -3,8 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    color: #000000;
 }
 
 h1 {
@@ -69,7 +68,6 @@ input[type="number"] {
     max-width: 300px;
     margin-bottom: 20px;
     border-radius: 8px;
-    border: 1px solid #ddd;
     outline: none;
 }
 
@@ -77,42 +75,8 @@ input[type="number"]:focus {
     border-color: #007bff;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100%;
-    max-width: 300px;
-}
-
 button:hover {
     background-color: #0056b3;
-}
-
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-    font-size: 1rem;
-}
-
-ul li {
-    padding: 5px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: space-between;
 }
 
 p.error {
@@ -122,19 +86,10 @@ p.error {
     margin-top: 10px;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
+.titlePujas {
+    text-align: center;
 }
 
-.container > div {
-    max-width: 800px;
-    width: 100%;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.listaPujas {
+    align-items: center;
 }
