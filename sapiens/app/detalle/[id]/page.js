@@ -140,10 +140,10 @@ const Detalle = () => {
             <h1>{detailData.title}</h1>
 
             <div className="galeria">
-                <img src={detailData.galeria?.imagenPrincipal} alt="Imagen del producto" />
+                <img src={detailData.galeria?.imagenPrincipal || null } alt="Imagen del producto" />
                 <div className="miniaturas">
                     {detailData.galeria?.miniaturas?.map((miniatura, index) => (
-                        <img key={index} src={miniatura} alt={`Miniatura ${index + 1}`} />
+                        <img key={index} src={miniatura || null } alt={`Miniatura ${index + 1}`} />
                     ))}
                 </div>
             </div>

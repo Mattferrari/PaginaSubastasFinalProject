@@ -32,7 +32,7 @@ const Producto = ({ producto }) => {
         <div className="producto">
             <div className="galeria">
                 <img
-                    src={detailData.galeria.imagenPrincipal}
+                    src={detailData.galeria.imagenPrincipal || null}
                     alt="Imagen del producto"
                     onClick={() => window.location.href = `../../detalle/${detailData.id}`}
                 />
