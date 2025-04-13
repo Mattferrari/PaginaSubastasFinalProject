@@ -63,7 +63,7 @@ const Detalle = () => {
                     brand: subasta.brand,
                     closing_date: subasta.closing_date,
                     creation_date: subasta.creation_date,
-                    minUp: (subasta.price*0.05).toFixed(2),
+                    minUp: 1,
                     puja: 0,
                 });
             }
