@@ -36,7 +36,7 @@ const Detalle = () => {
         console.log("Tkn: ", token)
         if (token) {
             console.log("token found successfully")
-            setUser({ token }); 
+            setUser({ token });
         }
     }, []);
 
@@ -63,7 +63,7 @@ const Detalle = () => {
                     brand: subasta.brand,
                     closing_date: subasta.closing_date,
                     creation_date: subasta.creation_date,
-                    minUp: (subasta.price*0.05).toFixed(2),
+                    minUp: (subasta.price * 0.05).toFixed(2),
                     puja: 0,
                 });
             }
@@ -86,7 +86,7 @@ const Detalle = () => {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${user.token}`, // <- importante si usas autenticación
+                        Authorization: `Bearer ${localStorage.getItem("access_token")}`, // <- importante si usas autenticación
                     },
                     body: JSON.stringify(nuevaPuja),
                 });
@@ -138,10 +138,10 @@ const Detalle = () => {
             <h1>{detailData.title}</h1>
 
             <div className="galeria">
-                <img src={detailData.galeria?.imagenPrincipal || null } alt="Imagen del producto" />
+                <img src={detailData.galeria?.imagenPrincipal || null} alt="Imagen del producto" />
                 <div className="miniaturas">
                     {detailData.galeria?.miniaturas?.map((miniatura, index) => (
-                        <img key={index} src={miniatura || null } alt={`Miniatura ${index + 1}`} />
+                        <img key={index} src={miniatura || null} alt={`Miniatura ${index + 1}`} />
                     ))}
                 </div>
             </div>
@@ -170,7 +170,7 @@ const Detalle = () => {
             )}
 
             <h2 className="titlePujas">Pujas</h2>
-            
+
 
             <Footer />
         </div>

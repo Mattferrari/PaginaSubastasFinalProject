@@ -5,7 +5,7 @@ import Subasta from "../../components/producto/producto";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import styles from "./styles.mis_subastas.css";
-import Producto from "../../components/producto/producto";
+import MiProducto from "../../components/miProducto/miProducto";
 import Link from "next/link";
 
 
@@ -21,36 +21,36 @@ const ListaMisSubastas = () => {
 
   useEffect(() => {
     const cargarSubastas = async () => {
-        let allsubastas = [];
-        let url = "http://127.0.0.1:8000/api/auctions/subastas/mis-subastas/";
-        const token = localStorage.getItem("access_token"); // Obtener el token
-      
-        try {
-          while (url) {
-            const response = await fetch(url, {
-              headers: {
-                // Agrega el token si el endpoint lo requiere
-                "Authorization": `Bearer ${token}`,
-                "Content-Type": "application/json"
-              },
-            });
-            const data = await response.json();
-      
-            if (Array.isArray(data.results)) {
-              allsubastas = [...allsubastas, ...data.results];
-            }
-      
-            // Romper si no hay más resultados
-            if (!data.next || data.results.length === 0) {
-              break;
-            }
-            url = data.next;
+      let allsubastas = [];
+      let url = "http://127.0.0.1:8000/api/auctions/subastas/mis-subastas/";
+      const token = localStorage.getItem("access_token"); // Obtener el token
+
+      try {
+        while (url) {
+          const response = await fetch(url, {
+            headers: {
+              // Agrega el token si el endpoint lo requiere
+              "Authorization": `Bearer ${token}`,
+              "Content-Type": "application/json"
+            },
+          });
+          const data = await response.json();
+
+          if (Array.isArray(data.results)) {
+            allsubastas = [...allsubastas, ...data.results];
           }
-          setSubastas(allsubastas);
-        } catch (error) {
-          console.error("Error al cargar subastas paginadas:", error);
+
+          // Romper si no hay más resultados
+          if (!data.next || data.results.length === 0) {
+            break;
+          }
+          url = data.next;
         }
-      };
+        setSubastas(allsubastas);
+      } catch (error) {
+        console.error("Error al cargar subastas paginadas:", error);
+      }
+    };
 
     cargarSubastas();
   }, []);
@@ -145,7 +145,7 @@ const ListaMisSubastas = () => {
             <select name="categoria" value={filtros.categoria} onChange={handleChange}>
               <option value="">Seleccionar categoría</option>
               {categorias?.map(categoria => (
-                <option key={categoria.id} value={categoria.id}> {/* Asumiendo que tienes un id y nombre para cada categoría */}
+                <option key={categoria.id} value={categoria.id}>
                   {categoria.name}
                 </option>
               ))}
@@ -155,7 +155,7 @@ const ListaMisSubastas = () => {
         <div className="subastas">
           {subastasFiltradas.length > 0 ? (
             subastasFiltradas.slice(0, 6)?.map(subasta => (
-              <Producto key={subasta.id} producto={subasta} />
+              <MiProducto key={subasta.id} producto={subasta} />
             ))
           ) : (
             <div>Subasta no encontrada</div>
