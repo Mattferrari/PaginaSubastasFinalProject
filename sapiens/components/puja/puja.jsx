@@ -6,6 +6,7 @@ import styles from "./styles.puja.css";
 
 const Puja = ({ puja }) => {
     const [detailData, setDetailData] = useState({
+        bidder_username: "",
         auction: "",
         amount: "",
         bid_time: 0,
@@ -14,6 +15,7 @@ const Puja = ({ puja }) => {
     useEffect(() => {
         if (puja) {
             setDetailData({
+                bidder_username: puja.bidder_username,
                 auction: puja.auction,
                 amount: puja.amount,
                 bid_time: new Date(detailData.bid_time).toLocaleString(),
@@ -23,7 +25,8 @@ const Puja = ({ puja }) => {
 
     return (
         <div className={styles.puja}>
-            <strong>{detailData.auction}</strong>
+            <p>{detailData.bidder_username}</p>
+            <p>{detailData.auction}</p>
             <p>
                 Precio: <b>$</b>
                 <strong>{detailData.amount}</strong>
