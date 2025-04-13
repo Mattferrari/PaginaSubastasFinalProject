@@ -5,6 +5,9 @@ import styles from "./styles.userCRUD.css";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 
+import Link from "next/link";
+
+
 const Profile = () => {
     const [profileData, setProfileData] = useState({
         name: "",
@@ -65,38 +68,42 @@ const Profile = () => {
                         <label className="FormLabel" htmlFor="name">Nombre</label>
                         <label className="FormData" htmlFor="name">{profileData.name}</label>
                     </div>
-    
+
                     <div className="form-group">
                         <label className="FormLabel" htmlFor="surname">Apellido</label>
                         <label className="FormData" htmlFor="surname">{profileData.surname}</label>
                     </div>
-    
+
                     <div className="form-group">
                         <label className="FormLabel" htmlFor="email">Correo (alu.comillas.edu)</label>
                         <label className="FormData" htmlFor="email">{profileData.email}</label>
                     </div>
-    
+
                     <div className="form-group">
                         <label className="FormLabel" htmlFor="username">Usuario</label>
                         <label className="FormData" htmlFor="username">{profileData.username}</label>
                     </div>
-    
+
                     <div className="form-group">
                         <label className="FormLabel" htmlFor="birthdate">Fecha de nacimiento</label>
                         <label className="FormData" htmlFor="birthdate">{profileData.birthdate}</label>
                     </div>
-    
+
                     <div className="form-group">
                         <label className="FormLabel" htmlFor="comunidad">Comunidad</label>
                         <label className="FormData" htmlFor="comunidad">{profileData.comunidad}</label>
                     </div>
-    
+
                     <div className="form-group">
                         <label className="FormLabel" htmlFor="ciudad">Ciudad</label>
                         <label className="FormData" htmlFor="ciudad">{profileData.ciudad}</label>
                     </div>
                 </form>
                 {error && <div className="error-message">{error}</div>}
+
+                <Link href="/usuario/editar">
+                    <button className="edit-button">Editar contraseña</button>
+                </Link>
             </main>
             <Footer />
         </div>
