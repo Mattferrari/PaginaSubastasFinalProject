@@ -19,31 +19,10 @@ const ListaMisSubastas = () => {
     maxPrecio: Infinity,
   });
 
-  // Obtener categorías del backend
-  useEffect(() => {
-    const cargarCategorias = async () => {
-      try {
-        const response = await fetch("http://127.0.0.1:8000/api/auctions/subastas/categorias/"); // Suponiendo que tienes un endpoint para las categorías
-        const data = await response.json();
-
-        if (Array.isArray(data.results)) {
-          setCategorias(data.results); // Guardar las categorías en el estado
-        }
-        // else {
-        //   console.error("Error: data no es un array", data);
-        // }
-      } catch (error) {
-        console.error("Error al cargar categorías:", error);
-      }
-    };
-
-    cargarCategorias();
-  }, []);
-
   useEffect(() => {
     const cargarSubastas = async () => {
         let allsubastas = [];
-        let url = "http://127.0.0.1:8000/api/auctions/subastas/";
+        let url = "http://127.0.0.1:8000/api/auctions/subastas/mis-subastas/";
         const token = localStorage.getItem("access_token"); // Obtener el token
       
         try {
@@ -74,6 +53,28 @@ const ListaMisSubastas = () => {
       };
 
     cargarSubastas();
+  }, []);
+
+
+  // Obtener categorías del backend
+  useEffect(() => {
+    const cargarCategorias = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/api/auctions/subastas/categorias/"); // Suponiendo que tienes un endpoint para las categorías
+        const data = await response.json();
+
+        if (Array.isArray(data.results)) {
+          setCategorias(data.results); // Guardar las categorías en el estado
+        }
+        // else {
+        //   console.error("Error: data no es un array", data);
+        // }
+      } catch (error) {
+        console.error("Error al cargar categorías:", error);
+      }
+    };
+
+    cargarCategorias();
   }, []);
 
   const handleChange = (e) => {
