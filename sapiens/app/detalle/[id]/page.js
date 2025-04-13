@@ -18,26 +18,25 @@ const Detalle = () => {
         },
         description: "",
         price: 0,
-        minUp: 1,
-        puja: 0,
         stock: 0,
         rating: 0,
         category: "",
         brand: "",
         closing_date: "",
         creation_date: "",
-        pujas: [], // Lista de pujas
+        minUp: 1,
+        puja: 0,
     });
 
     const [oferError, setOferError] = useState("");
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const username = localStorage.getItem("username");
-        const token = localStorage.getItem("token");
-
-        if (username && token) {
-            setUser({ username, token }); // puedes añadir más si guardas más info
+        const token = localStorage.getItem("access_token");
+        console.log("Tkn: ", token)
+        if (token) {
+            console.log("token found successfully")
+            setUser({ token }); 
         }
     }, []);
 
@@ -58,15 +57,14 @@ const Detalle = () => {
                     },
                     description: subasta.description,
                     price: subasta.price,
-                    minUp: 1,
-                    puja: 0,
                     stock: subasta.stock,
                     rating: subasta.rating,
                     category: subasta.category.name,
                     brand: subasta.brand,
                     closing_date: subasta.closing_date,
                     creation_date: subasta.creation_date,
-                    pujas: subasta.pujas || [],
+                    minUp: (subasta.price*0.05).toFixed(2),
+                    puja: 0,
                 });
             }
         };
@@ -172,16 +170,7 @@ const Detalle = () => {
             )}
 
             <h2 className="titlePujas">Pujas</h2>
-            <ul className="listaPujas">
-                {detailData.pujas
-                    .sort((a, b) => b.price - a.price) // Ordenamos las pujas por precio descendente
-                    .map((puja, index) => (
-                        <li key={index}>
-                            <p>{`Pujador: ${puja.user} - $${puja.price}`}</p>
-                            <p>{`Fecha de la puja: ${new Date(puja.creation_date).toLocaleString()}`}</p>
-                        </li>
-                    ))}
-            </ul>
+            
 
             <Footer />
         </div>
