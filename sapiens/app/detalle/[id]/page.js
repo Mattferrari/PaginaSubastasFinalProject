@@ -2,14 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import styles from "./styles.detalle.css";
+import "./styles.detalle.css";
 import Header from "../../../components/header/header";
 import Footer from "../../../components/footer/footer";
+import Puja from "../../../components/puja/puja";
 
 const Detalle = () => {
     const params = useParams();
     const id = params.id; // Obtener el ID de la subasta
-
+    const [listaPujas, setListaPujas] = useState([]);
     const [detailData, setDetailData] = useState({
         title: "Producto no encontrado",
         galeria: {
@@ -33,9 +34,10 @@ const Detalle = () => {
 
     useEffect(() => {
         const token = localStorage.getItem("access_token");
-        console.log("Tkn: ", token)
+        console.log("Tkn: ", token);
         if (token) {
-            console.log("token found successfully")
+
+            console.log("token found successfully");
             setUser({ token });
         }
     }, []);
@@ -63,13 +65,33 @@ const Detalle = () => {
                     brand: subasta.brand,
                     closing_date: subasta.closing_date,
                     creation_date: subasta.creation_date,
-                    minUp: (subasta.price * 0.05).toFixed(2),
+
+                    minUp: 1,
                     puja: 0,
                 });
             }
         };
 
         fetchAuctionData();
+    }, [id]);
+
+    // Llamada para obtener la lista de pujas desde el backend
+    useEffect(() => {
+        const fetchPujas = async () => {
+            const response = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}/pujas/`);
+            const data = await response.json();
+            // Aseguramos que listaPujas quede definido como arreglo
+            if (Array.isArray(data)) {
+                setListaPujas(data);
+            } else if (data.results) {
+                setListaPujas(data.results);
+            } else {
+                setListaPujas([]);
+            }
+        };
+        if (id) {
+            fetchPujas();
+        }
     }, [id]);
 
     const minPrice = () => detailData.minUp + detailData.price;
@@ -86,7 +108,9 @@ const Detalle = () => {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${localStorage.getItem("access_token")}`, // <- importante si usas autenticación
+
+
+                        Authorization: `Bearer ${user.token}`,
                     },
                     body: JSON.stringify(nuevaPuja),
                 });
@@ -108,15 +132,15 @@ const Detalle = () => {
                 setDetailData((prevState) => ({
                     ...prevState,
                     price: data.amount,
-                    pujas: [data, ...prevState.pujas],
                     puja: 0,
                 }));
+                // Agregar la nueva puja al principio de la lista
+                setListaPujas((prevPujas) => [data, ...prevPujas]);
             } catch (error) {
                 console.error("Error en fetch:", error);
             }
         }
     };
-
 
     const validatePrice = (value) => {
         if (value < minPrice()) {
@@ -149,9 +173,14 @@ const Detalle = () => {
             <p>{detailData.description}</p>
 
             <p>
-                Última puja: <b>$</b><strong>{detailData.price}</strong>
-                Subida mínima: <b>$</b><strong>{detailData.minUp}</strong>
-                Precio actual: <b>$</b><strong>{minPrice()}</strong>
+                Última puja: <b>$</b>
+                <strong>{detailData.price}</strong>
+                <br />
+                Subida mínima: <b>$</b>
+                <strong>{detailData.minUp}</strong>
+                <br />
+                Precio actual: <b>$</b>
+                <strong>{minPrice()}</strong>
             </p>
 
             <input
@@ -163,6 +192,8 @@ const Detalle = () => {
                 min={minPrice()}
             />
 
+            {oferError && <p className="error">{oferError}</p>}
+
             {user ? (
                 <button onClick={pujar}>Pujar</button>
             ) : (
@@ -171,11 +202,17 @@ const Detalle = () => {
 
             <h2 className="titlePujas">Pujas</h2>
 
+            <ul className="listaPujas">
+                {listaPujas.map((pujaObj, index) => (
+                    <li key={pujaObj.id || index}>
+                        <Puja puja={pujaObj} />
+                    </li>
+                ))}
+            </ul>
 
             <Footer />
-        </div>
+        </div >
     );
 };
 
 export default Detalle;
-
