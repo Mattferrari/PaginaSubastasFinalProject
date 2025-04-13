@@ -20,9 +20,9 @@ const Profile = () => {
     useEffect(() => {
         const handleGetProfile = async () => {
             try {
-                let token = localStorage.getItem("token");
+                let token = localStorage.getItem("access_token");
                 console.log(token)
-                const response = await fetch("https://das-p2-backend.onrender.com/api/users/profile/", {
+                const response = await fetch("http://127.0.0.1:8000/api/users/me", {
                     method: "GET",
                     headers: {
                         "Authorization": `Bearer ${token}`,

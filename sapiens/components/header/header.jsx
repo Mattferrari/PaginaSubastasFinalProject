@@ -60,13 +60,13 @@ const Header = () => {
         <Link href="/subastas">
           <span className="icon">📦</span>Productos
         </Link>
-        <Link href="/subastas">
-          <span className="icon">🛒</span>Carrito
+        <Link href="/mis_compras">
+          <span className="icon">🛒</span>Mis Compras
         </Link>
-        <Link href="/subastas">
-          <span className="icon">📄</span>Mis Compras
+        <Link href="/mis_subastas">
+          <span className="icon">📄</span>Mis subastas
         </Link>
-        <Link href="/userCRUD">
+        <Link href="/usuario">
           <span className="icon">⚙️</span>Configuración
         </Link>
       </nav>

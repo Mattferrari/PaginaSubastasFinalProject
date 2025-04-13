@@ -1,0 +1,63 @@
+.puja {
+    background-color: #fff; /* Fondo blanco */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    color: #000; /* Texto negro por defecto */
+  }
+  
+  .puja:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  p {
+    font-size: 1rem;
+    color: #333; 
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  
+  p b {
+    font-size: 1.2rem;
+    color: #007bff; 
+  }
+  
+  strong {
+    font-size: 1.4rem;
+    color: #2ecc71; /* Verde para el precio actual */
+  }
+  
+  hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+  }
+  
+  .puja .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+  }
+  
+  .puja .info p {
+    font-size: 1.1rem;
+    color: #000; /* Texto en negro para información adicional */
+  }
+  
+  .puja .info .puja {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff; /* Azul para el precio de la subasta */
+  }
+  
+  .puja .info .tiempo {
+    font-size: 1.1rem;
+    color: #f39c12; /* Naranja para el tiempo restante */
+    font-weight: bold;
+  }
+  
