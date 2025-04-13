@@ -26,23 +26,24 @@ const Register = () => {
   const [error, setError] = useState("");
 
   const handleRegister = async (formData) => {
+    console.log("formData: ",formData)
     const response = await fetch("http://127.0.0.1:8000/api/users/register/", {
       method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            username: formData.username,
-            email: formData.email,
-            password: formData.password,
-            first_name: formData.name,
-            last_name: formData.surname,
-            birth_date: formData.birth_date, 
-            locality: formData.ciudad,
-            municipality: formData.comunidad
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+          first_name: formData.first_name,
+          last_name: formData.last_name,
+          birth_date: formData.birth_date,
+          locality: formData.locality,
+          municipality: formData.municipality 
         }),
     });
-    
+    console.log("response: ", response)
     return response
   };
 
