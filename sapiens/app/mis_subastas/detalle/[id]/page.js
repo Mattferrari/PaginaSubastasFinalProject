@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import styles from "./styles.detalleMisSubastas.css";
@@ -145,6 +146,10 @@ const Detalle = () => {
             <button onClick={handleDeleteAuction}>
                 Eliminar subasta
             </button>
+
+            <Link href={`/mis_subastas/detalle/${id}/editar`}>
+                <button>Editar subasta</button>
+            </Link>
 
             <Footer />
         </div>
