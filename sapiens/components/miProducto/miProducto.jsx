@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import styles from "./styles.producto.css";
+import styles from "./styles.miProducto.css";
 import { useRouter } from "next/navigation";
 
 
-const Producto = ({ producto }) => {
+const MiProducto = ({ producto }) => {
     const [detailData, setDetailData] = useState({
         titulo: "Producto no encontrado",
         galeria: {
@@ -34,11 +34,11 @@ const Producto = ({ producto }) => {
                 <img
                     src={detailData.galeria.imagenPrincipal || null}
                     alt="Imagen del producto"
-                    onClick={() => window.location.href = `../../detalle/${detailData.id}`}
+                    onClick={() => window.location.href = `../../mis_subastas/detalle/${detailData.id}`}
                 />
             </div>
 
-            <h1 onClick={() => window.location.href = `../../detalle/${detailData.id}`}>{detailData.titulo}</h1>
+            <h1 onClick={() => window.location.href = `../../mis_subastas/detalle/${detailData.id}`}>{detailData.titulo}</h1>
 
             <p>{detailData.descripcion}</p>
 
@@ -50,4 +50,4 @@ const Producto = ({ producto }) => {
     );
 };
 
-export default Producto;
+export default MiProducto;

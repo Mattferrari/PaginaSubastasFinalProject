@@ -5,52 +5,54 @@ import React, { useState } from 'react';
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 import styles from "./styles.inicio.css";
+import { useRouter } from 'next/navigation';
 
 import Link from "next/link";
 
-
 const LogIn = () => {
+  const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState("");
   const [valid, setvalid] = useState("")
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    handleLogin(username, password)
-    console.log('Iniciar sesión con:', username, password);
+    handleLogin(username, password); 
   };
 
+
   const handleLogin = async (username, password) => {
-    try {
-        const response = await fetch("https://das-p2-backend.onrender.com/api/users/login/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, password }),
-        });
+    try{
+      const response = await fetch("http://127.0.0.1:8000/api/token/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        }),
+      });
+      const data = await response.json();
+      console.log(data)
 
-        if (!response.ok) {
-            setError("Ha habido un problema")
-        }
-        else {
-            setvalid("Registrado con exito")
-        }
-
-        const data = await response.json();
-        console.log("Login exitoso:", data);
-
-        // Guardar el token en localStorage para futuras peticiones
-        localStorage.setItem("token", data.access);
-        localStorage.setItem("username", data.username);
-        location.href = "../"
-        
+      if (!response.ok) {
+        console.error("Error en el login:", data);
+        setError("Ha habido un problema");
+      }else{
+        setvalid("Registrado con éxito");
+        localStorage.setItem("access_token", data.access);
+        localStorage.setItem("refresh_token", data.refresh);
+        console.log(localStorage.getItem("access_token"))
+        console.log(localStorage.getItem("refresh_token"))
+        router.push('/');
+      }
     } catch (error) {
-        console.error("Error en el login:", error);
-        setError("Usuario o contraseña incorrectos")
+      console.error("Error con el servidor:", error);
+      setError("Error en la conexión");
     }
-};
+  };
 
   return (
     <div>

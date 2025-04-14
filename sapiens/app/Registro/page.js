@@ -6,6 +6,7 @@ import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
 
 const Register = () => {
+  // form data initialized to ""
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
@@ -25,36 +26,26 @@ const Register = () => {
   const [error, setError] = useState("");
 
   const handleRegister = async (formData) => {
-    try {
-        const response = await fetch("https://das-p2-backend.onrender.com/api/users/register/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                username: formData.username,
-                email: formData.email,
-                password: formData.password,
-                first_name: formData.name,
-                last_name: formData.surname,
-                birth_date: formData.birthdate, 
-                locality: formData.ciudad,
-                municipality: formData.comunidad
-            }),
-        });
-        console.log("Intentando iniciar sesión con:", formData.username, formData.password, formData.email);
-        if (!response.ok) {
-            setError("Usuario ya existente");
-        }
-
-        const data = await response.json();
-        console.log("Registro exitoso:", data);
-        setError("Registrado con exito");
-    } catch (error) {
-        console.error("Error en el registro:", error);
-        setError("Error con el servidor");
-    }
-};
+    console.log("formData: ",formData)
+    const response = await fetch("http://127.0.0.1:8000/api/users/register/", {
+      method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+          first_name: formData.first_name,
+          last_name: formData.last_name,
+          birth_date: formData.birth_date,
+          locality: formData.locality,
+          municipality: formData.municipality 
+        }),
+    });
+    console.log("response: ", response)
+    return response
+  };
 
 
   useEffect(() => {
@@ -112,9 +103,9 @@ const Register = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!passwordError && !confirmationError) {
         const formData = {
             username: e.target.username.value,
@@ -122,19 +113,30 @@ const Register = () => {
             password: e.target.password.value,
             first_name: e.target.name.value,
             last_name: e.target.surname.value,
-            birth_date: e.target.birthdate.value, 
+            birth_date: e.target.birthdate.value,
             locality: e.target.comunidad.value,
             municipality: e.target.ciudad.value,
         };
-        console.log("Intentando iniciar sesión con:", formData);
-        formData.birth_date = new Date(formData.birth_date).toISOString();
 
-        handleRegister(formData);  // Ahora pasamos los datos correctos
-        location.href = "../"; // Redirigir después de enviar
+        try {
+            const response = await handleRegister(formData);
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.detail || "Hubo un problema al crear el usuario.");
+            }
+
+            location.href = "../"; // Redirigir después de éxito
+
+        } catch (error) {
+            console.error("Error al crear usuario:", error.message);
+            setSendingText(error.message); 
+        }
     } else {
         setSendingText("El formulario no se pudo enviar");
     }
 };
+
 
   return (
     <div>

@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import "./styles.header.css";
 import Link from "next/link";
@@ -9,23 +8,23 @@ const Header = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    console.log("Token encontrado:", token); // Verificar si el token está en el localStorage
+    const token = localStorage.getItem("access_token");
+    console.log("Token encontrado:", token);
     if (token) {
       console.log("Token encontrado, actualizando isAuthenticated");
       setIsAuthenticated(true);
     }
-    setIsLoading(false); // Asegúrate de que el loading se cambie a false después de la verificación
+    setIsLoading(false);
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");  // Eliminar el token del localStorage
-    setIsAuthenticated(false);         // Actualizar el estado a false
+    localStorage.removeItem("access_token");  // Elimina el token correcto
+    setIsAuthenticated(false);                  
     console.log("Cierre de sesión exitoso");
   };
 
   if (isLoading) {
-    return <div>Cargando...</div>; // Mostrar cargando mientras se valida el token
+    return <div>Cargando...</div>; // Muestra cargando mientras se verifica el token
   }
 
   return (
@@ -34,11 +33,7 @@ const Header = () => {
         <div className="logo">sAPIens</div>
 
         <div className="search-container">
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Buscar por producto, categoría, etc."
-          />
+          <input type="text" id="searchInput" placeholder="Buscar por producto, categoría, etc." />
           <button id="searchButton">🔍</button>
         </div>
 
@@ -51,10 +46,11 @@ const Header = () => {
               <button>Registrarse</button>
             </Link>
           </div>
-        ) : 
-        <div className="auth-links"><button onClick={handleLogout}>Cerrar sesión</button></div>
-        }
-
+        ) : (
+          <div className="auth-links">
+            <button onClick={handleLogout}>Cerrar sesión</button>
+          </div>
+        )}
       </nav>
 
       <nav className="menu-bar">
@@ -64,13 +60,13 @@ const Header = () => {
         <Link href="/subastas">
           <span className="icon">📦</span>Productos
         </Link>
-        <Link href="/subastas">
-          <span className="icon">🛒</span>Carrito
+        <Link href="/mis_compras">
+          <span className="icon">🛒</span>Mis pujas
         </Link>
-        <Link href="/subastas">
-          <span className="icon">📄</span>Mis Compras
+        <Link href="/mis_subastas">
+          <span className="icon">📄</span>Mis subastas
         </Link>
-        <Link href="/userCRUD">
+        <Link href="/usuario">
           <span className="icon">⚙️</span>Configuración
         </Link>
       </nav>

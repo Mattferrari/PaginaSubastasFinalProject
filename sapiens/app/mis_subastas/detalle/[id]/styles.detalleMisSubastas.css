@@ -1,0 +1,95 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Galería del producto */
+.galeria {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.galeria img {
+    max-width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    max-height: 400px;
+    transition: transform 0.3s ease;
+}
+
+.galeria img:hover {
+    transform: scale(1.05);
+}
+
+.miniaturas {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.miniaturas img {
+    width: 50px;
+    height: 50px;
+    margin: 0 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.miniaturas img:hover {
+    transform: scale(1.1);
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+input[type="number"] {
+    font-size: 1.2rem;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    outline: none;
+}
+
+input[type="number"]:focus {
+    border-color: #007bff;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p.error {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.titlePujas {
+    text-align: center;
+}
+
+.listaPujas {
+    align-items: center;
+}
