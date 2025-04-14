@@ -136,14 +136,14 @@ const EditarSubasta = () => {
                     <input
                         type="text"
                         name="title"
-                        value={formData.title || ""} // Asegúrate de que siempre haya un valor
+                        value={formData.title || ""}
                         onChange={handleChange}
                         placeholder="Título"
                         required
                     />
                     <textarea
                         name="description"
-                        value={formData.description || ""} // Asegúrate de que siempre haya un valor
+                        value={formData.description || ""}
                         onChange={handleChange}
                         placeholder="Descripción"
                         required
@@ -151,7 +151,7 @@ const EditarSubasta = () => {
                     <input
                         type="number"
                         name="price"
-                        value={formData.price || ""} // Asegúrate de que siempre haya un valor
+                        value={formData.price || ""}
                         onChange={handleChange}
                         placeholder="Precio"
                         required
@@ -159,7 +159,7 @@ const EditarSubasta = () => {
                     <input
                         type="number"
                         name="rating"
-                        value={formData.rating || ""} // Asegúrate de que siempre haya un valor
+                        value={formData.rating || ""}
                         onChange={handleChange}
                         placeholder="Rating"
                         required
@@ -167,7 +167,7 @@ const EditarSubasta = () => {
                     <input
                         type="number"
                         name="stock"
-                        value={formData.stock || ""} // Asegúrate de que siempre haya un valor
+                        value={formData.stock || ""}
                         onChange={handleChange}
                         placeholder="Stock"
                         required
@@ -175,21 +175,21 @@ const EditarSubasta = () => {
                     <input
                         type="text"
                         name="brand"
-                        value={formData.brand || ""} // Asegúrate de que siempre haya un valor
+                        value={formData.brand || ""}
                         onChange={handleChange}
                         placeholder="Marca"
                     />
                     <input
                         type="url"
                         name="thumbnail"
-                        value={formData.thumbnail || ""} // Asegúrate de que siempre haya un valor
+                        value={formData.thumbnail || ""}
                         onChange={handleChange}
                         placeholder="URL de la imagen (thumbnail)"
                         required
                     />
                     <select
                         name="category"
-                        value={formData.category || ""} // Asegúrate de que siempre haya un valor
+                        value={formData.category || ""}
                         onChange={handleSelectChange}
                         required
                     >
