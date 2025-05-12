@@ -82,7 +82,6 @@ const CrearSubasta = () => {
                         <input type="text" name="title" placeholder="Título" required onChange={handleChange} />
                         <textarea name="description" placeholder="Descripción" required onChange={handleChange} />
                         <input type="number" name="price" placeholder="Precio de salida" step="0.01" required onChange={handleChange} />
-                        <input type="number" name="rating" placeholder="Valoración (1 a 5)" step="0.01" min="1" max="5" required onChange={handleChange} />
                         <input type="number" name="stock" placeholder="Stock" min="1" required onChange={handleChange} />
                         <input type="text" name="brand" placeholder="Marca" required onChange={handleChange} />
                         <select name="category" required onChange={handleChange}>

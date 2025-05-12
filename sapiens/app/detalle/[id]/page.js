@@ -6,6 +6,8 @@ import "./styles.detalle.css";
 import Header from "../../../components/header/header";
 import Footer from "../../../components/footer/footer";
 import Puja from "../../../components/puja/puja";
+import Link from "next/link";
+
 
 const Detalle = () => {
     const params = useParams();
@@ -20,7 +22,6 @@ const Detalle = () => {
         description: "",
         price: 0,
         stock: 0,
-        rating: 0,
         category: "",
         brand: "",
         closing_date: "",
@@ -29,12 +30,14 @@ const Detalle = () => {
         puja: 0,
     });
 
+    const [username, setUsername] = useState("");
     const [oferError, setOferError] = useState("");
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({ token: null });
+    const [newRating, setNewRating] = useState("");
+    const [avgRating, setAvgRating] = useState("")
 
     useEffect(() => {
         const token = localStorage.getItem("access_token");
-        console.log("Tkn: ", token);
         if (token) {
 
             console.log("token found successfully");
@@ -43,11 +46,42 @@ const Detalle = () => {
     }, []);
 
     useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await fetch("http://127.0.0.1:8000/api/users/me/", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${user.token}`,
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error("No se pudo obtener el usuario.");
+                }
+
+                const data = await response.json();
+                setUsername(data.username); // Aquí guardas el username
+            } catch (error) {
+                console.error("Error al obtener datos del usuario:", error);
+            }
+        };
+
+        if (user && user.token) {
+            fetchUserData();
+        }
+    }, [user]);
+
+    useEffect(() => {
         if (!id) return;
 
         const fetchAuctionData = async () => {
-            // Reemplaza esta URL con la correcta para tu API
-            const response = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}`);
+            const response = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}`, {
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("access_token")}`,
+                    "Content-Type": "application/json"
+                }
+            });
             const subasta = await response.json();
 
             if (subasta) {
@@ -60,85 +94,116 @@ const Detalle = () => {
                     description: subasta.description,
                     price: subasta.price,
                     stock: subasta.stock,
-                    rating: subasta.rating,
+                    rating: subasta.average_rating,
                     category: subasta.category.name,
                     brand: subasta.brand,
                     closing_date: subasta.closing_date,
                     creation_date: subasta.creation_date,
-
                     minUp: 1,
                     puja: 0,
                 });
+
+                setAvgRating(subasta.average_rating);
             }
+
         };
 
         fetchAuctionData();
-    }, [id]);
+    }, [id, newRating]);
 
-    // Llamada para obtener la lista de pujas desde el backend
+
+
     useEffect(() => {
         const fetchPujas = async () => {
-            const response = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}/pujas/`);
-            const data = await response.json();
-            // Aseguramos que listaPujas quede definido como arreglo
-            if (Array.isArray(data)) {
-                setListaPujas(data);
-            } else if (data.results) {
-                setListaPujas(data.results);
-            } else {
+            try {
+                if (!id || !user?.token) {
+                    setListaPujas([]);
+                    return;
+                }
+
+                const response = await fetch(
+                    `http://127.0.0.1:8000/api/auctions/subastas/${id}/pujas/`,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${user.token}`,
+                            "Content-Type": "application/json"
+                        }
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                setListaPujas(Array.isArray(data) ? data : data.results || []);
+
+            } catch (error) {
+                console.error("Error fetching bids:", error);
                 setListaPujas([]);
+                // Opcional: Mostrar notificación al usuario
+                // setError("No se pudieron cargar las pujas");
             }
         };
-        if (id) {
-            fetchPujas();
-        }
-    }, [id]);
+
+        fetchPujas();
+    }, [id, user?.token]);  // Se ejecuta cuando cambia id o el token
 
     const minPrice = () => detailData.minUp + detailData.price;
 
     const pujar = async () => {
-        if (!oferError && user) {
-            const nuevaPuja = {
-                amount: parseFloat(detailData.puja),
-                auction: id,
-            };
+        if (!user?.token) {
+            alert("Debes iniciar sesión para pujar");
+            return;
+        }
 
-            try {
-                const response = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}/pujas/`, {
+        try {
+            // Validación básica del precio
+            if (detailData.puja <= minPrice()) {
+                setOferError(`La puja debe ser mayor a ${minPrice()}`);
+                return;
+            }
+
+            // Antes de hacer la petición, verifica el token:
+            const token = localStorage.getItem('access_token');
+
+            // Limpia el token si está corrupto
+            if (!token || token.split('.').length !== 3) {
+                localStorage.removeItem('access_token');
+                window.location.reload(); // Redirige a login
+                return;
+            }
+
+            const response = await fetch(
+                `http://127.0.0.1:8000/api/auctions/subastas/${id}/pujas/`,
+                {
                     method: "POST",
                     headers: {
+                        "Authorization": `Bearer ${user.token}`,
                         "Content-Type": "application/json",
-
-
-                        Authorization: `Bearer ${user.token}`,
                     },
-                    body: JSON.stringify(nuevaPuja),
-                });
-
-                const contentType = response.headers.get("content-type");
-
-                if (!response.ok) {
-                    if (contentType && contentType.includes("application/json")) {
-                        const errorData = await response.json();
-                        console.error("Error al pujar:", errorData);
-                    } else {
-                        const text = await response.text();
-                        console.error("Respuesta no JSON:", text);
-                    }
-                    throw new Error("Error al realizar la puja");
+                    body: JSON.stringify({
+                        price: parseFloat(detailData.puja),
+                        bidder: username
+                    }),
                 }
+            );
 
-                const data = await response.json();
-                setDetailData((prevState) => ({
-                    ...prevState,
-                    price: data.amount,
-                    puja: 0,
-                }));
-                // Agregar la nueva puja al principio de la lista
-                setListaPujas((prevPujas) => [data, ...prevPujas]);
-            } catch (error) {
-                console.error("Error en fetch:", error);
+            // Manejo de errores HTTP
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error("Error del servidor:", errorText);
+                throw new Error(`Error ${response.status}`);
             }
+
+            // Procesar respuesta exitosa
+            const data = await response.json();
+            setListaPujas(prev => [data, ...prev]);
+            setDetailData(prev => ({ ...prev, price: data.price, puja: 0 }));
+
+        } catch (error) {
+            console.error("Error al pujar:", error);
+            alert("Error al procesar la puja. Verifica la consola para más detalles.");
         }
     };
 
@@ -156,6 +221,53 @@ const Detalle = () => {
         setDetailData({ ...detailData, [name]: value });
     };
 
+    const handleChangeRatings = (e) => {
+        setNewRating(e.target.value);
+    };
+
+
+    const handleRatingSubmit = async () => {
+        if (!user || !user.token) {
+            alert("Debes estar autenticado para valorar");
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}/rate/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${user.token}`,
+                },
+                body: JSON.stringify({ value: Number(newRating) }),
+            });
+
+            if (response.ok) {
+                alert("¡Valoración enviada!");
+                setNewRating("");
+
+                // Obtener promedio actualizado
+                const updatedAuction = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${user.token}`,
+                    }
+                });
+
+                const updatedData = await updatedAuction.json();
+                setAvgRating(updatedData.average_rating);  // Esto debe ser un número
+            }
+
+            else {
+                const errorData = await response.json();
+                console.error("Error al enviar valoración", errorData);
+            }
+        } catch (err) {
+            console.error("Error", err);
+        }
+    };
+
+
     return (
         <div>
             <Header />
@@ -172,6 +284,7 @@ const Detalle = () => {
 
             <p>{detailData.description}</p>
 
+
             <p>
                 Última puja: <b>$</b>
                 <strong>{detailData.price}</strong>
@@ -181,7 +294,33 @@ const Detalle = () => {
                 <br />
                 Precio actual: <b>$</b>
                 <strong>{minPrice()}</strong>
+                <br />
+                Valoracion actual:
+                <strong>{avgRating ?? "No disponible"}</strong>
             </p>
+
+            <Link href={`/detalle/${id}/comentarios`}>
+                <button style={{ marginTop: "20px" }}>
+                    Ver comentarios
+                </button>
+            </Link>
+
+            {user && (
+                <div className="valoracion">
+                    <label>Valora esta subasta (1 a 5):</label>
+                    <input
+                        type="number"
+                        name="rating"
+                        min="1"
+                        max="5"
+                        value={newRating ?? ""}
+                        onChange={handleChangeRatings}
+                    />
+                    <button onClick={handleRatingSubmit}>
+                        Enviar valoración
+                    </button>
+                </div>
+            )}
 
             <input
                 type="number"
