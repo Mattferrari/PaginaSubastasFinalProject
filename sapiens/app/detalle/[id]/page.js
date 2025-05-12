@@ -247,7 +247,13 @@ const Detalle = () => {
                 setNewRating("");
 
                 // Obtener promedio actualizado
-                const updatedAuction = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}`);
+                const updatedAuction = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${user.token}`,
+                    }
+                });
+
                 const updatedData = await updatedAuction.json();
                 setAvgRating(updatedData.average_rating);  // Esto debe ser un número
             }
