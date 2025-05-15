@@ -74,16 +74,31 @@ const Detalle = () => {
 
     useEffect(() => {
         if (!id) return;
-
-        const fetchAuctionData = async () => {
-            const response = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}`, {
-                headers: {
+        let url;
+        let headers;
+        if (user.token){
+            url = `http://127.0.0.1:8000/api/auctions/subastas/${id}/modify/delete`
+            headers =  {
                     "Authorization": `Bearer ${localStorage.getItem("access_token")}`,
                     "Content-Type": "application/json"
                 }
+        }
+        else{
+            url = `http://127.0.0.1:8000/api/auctions/subastas/${id}`
+            headers =  {
+                    "Content-Type": "application/json"
+                }
+        }
+        const fetchAuctionData = async () => {
+            console.log("------------------------")
+            console.log(url)
+            const response = await fetch(url, {
+                headers: headers
             });
             const subasta = await response.json();
 
+            console.log("----------------")
+            console.log(subasta)
             if (subasta) {
                 setDetailData({
                     title: subasta.title,

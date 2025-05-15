@@ -39,8 +39,6 @@ const Comentarios = () => {
         fetchComentarios();
     }, [id]);
 
-    console.log(comentarios)
-
     return (
         <div>
             <Header />
