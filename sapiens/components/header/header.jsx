@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./styles.header.css";
 import Link from "next/link";
 
+
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -19,8 +20,9 @@ const Header = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");  // Elimina el token correcto
-    setIsAuthenticated(false);                  
+    setIsAuthenticated(false);
     console.log("Cierre de sesión exitoso");
+    window.location.href = "/";
   };
 
   if (isLoading) {
