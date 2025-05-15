@@ -269,7 +269,7 @@ const Detalle = () => {
 
         try {
             let response;
-            if (!newRating) {
+            if (!newRating || newRating == 0) {
                 response = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}/rate/delete/`, {
                     method: "DELETE",
                     headers: {
@@ -357,6 +357,10 @@ const Detalle = () => {
 
             {user && (
                 <div className="valoracion">
+                    <p>
+                        puede modificar la valoracion 
+                        o dejarla en 0 o en blanco para eliminarla
+                    </p>
                     <label>Valora esta subasta (1 a 5):</label>
                     <input
                         type="number"
