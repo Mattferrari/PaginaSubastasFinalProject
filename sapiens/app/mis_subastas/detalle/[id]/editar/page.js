@@ -15,7 +15,6 @@ const EditarSubasta = () => {
         description: "",
         price: "",
         stock: "",
-        rating: "",
         brand: "",
         closing_date: "",
         thumbnail: "",
@@ -94,7 +93,7 @@ const EditarSubasta = () => {
 
         try {
             const token = localStorage.getItem("access_token");
-            const res = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}/`, {
+            const res = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}/modify/delete/`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -156,14 +155,7 @@ const EditarSubasta = () => {
                         placeholder="Precio"
                         required
                     />
-                    <input
-                        type="number"
-                        name="rating"
-                        value={formData.rating || ""}
-                        onChange={handleChange}
-                        placeholder="Rating"
-                        required
-                    />
+
                     <input
                         type="number"
                         name="stock"
