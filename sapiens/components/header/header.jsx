@@ -63,7 +63,7 @@ const Header = () => {
           <span className="icon">📦</span>Productos
         </Link>
         <Link href="/mis_compras">
-          <span className="icon">🛒</span>Mis pajas
+          <span className="icon">🛒</span>Mis pujas
         </Link>
         <Link href="/mis_subastas">
           <span className="icon">📄</span>Mis subastas
