@@ -46,9 +46,6 @@ const Profile = () => {
                         ciudad: data.municipality,
                     });
                     console.log(data)
-                } else {
-                    console.error("Error al obtener el perfil:", response.statusText);
-                    setError("Error al obtener el perfil");
                 }
             } catch (error) {
                 console.error("Error al obtener el perfil:", error);
