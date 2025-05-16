@@ -15,7 +15,7 @@ const MiProducto = ({ producto }) => {
         precio: 0,
         id: 0,
     });
-
+    console.log(producto)
     useEffect(() => {
         if (producto) {
             setDetailData({

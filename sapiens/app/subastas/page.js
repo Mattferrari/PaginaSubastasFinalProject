@@ -17,6 +17,8 @@ const ListaSubastas = () => {
     categoria: "", // Solo una categoría seleccionable
     minPrecio: 0,
     maxPrecio: Infinity,
+    is_open:false,
+    low_rating:0,
   });
 
   // Obtener categorías del backend
@@ -40,6 +42,7 @@ const ListaSubastas = () => {
     cargarCategorias();
   }, []);
 
+  // obtener subastas paginadas
   useEffect(() => {
     const cargarSubastas = async () => {
       let allsubastas = [];
@@ -49,7 +52,6 @@ const ListaSubastas = () => {
         while (url) {
           const response = await fetch(url);
           const data = await response.json();
-
           if (Array.isArray(data.results)) {
             allsubastas = [...allsubastas, ...data.results];
           }
@@ -61,7 +63,6 @@ const ListaSubastas = () => {
 
           url = data.next;
         }
-
         setSubastas(allsubastas);
       } catch (error) {
         console.error("Error al cargar subastas paginadas:", error);
@@ -69,14 +70,15 @@ const ListaSubastas = () => {
     };
 
     cargarSubastas();
-  }, []);
+  }, [filtros]);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "categoria") {
       setFiltros((prevFiltros) => ({
         ...prevFiltros,
-        categoria: parseInt(value), // Actualizamos solo una categoría seleccionada
+        categoria: value ? parseInt(value) : "", // Actualizamos solo una categoría seleccionada
       }));
     } else {
       const numericValue = parseFloat(value);
@@ -84,8 +86,14 @@ const ListaSubastas = () => {
         if (name === "minPrecio" && (numericValue < 0 || isNaN(numericValue))) {
           return { ...prevFiltros, [name]: 0 };
         }
-        if (name === "maxPrecio" && (numericValue <= prevFiltros.minPrecio || isNaN(numericValue))) {
+        if (name === "maxPrecio" && (numericValue <= 0 || isNaN(numericValue))) {
           return { ...prevFiltros, [name]: Infinity };
+        }
+        if (name === "low_rating" && isNaN(numericValue)) {
+          return { ... prevFiltros, [name]: 0}
+        }
+        if (name === "low_rating"){
+          return{ ... prevFiltros, [name]: Math.max(0, Math.min(5, numericValue))}
         }
         return {
           ...prevFiltros,
@@ -100,8 +108,10 @@ const ListaSubastas = () => {
     const matchesCategoria = filtros.categoria ? subasta.category === filtros.categoria : true;
     const precioActual = subasta.price;
     const matchesPrecio = (filtros.minPrecio <= precioActual && (filtros.maxPrecio >= precioActual || filtros.maxPrecio === Infinity));
+    const is_open = filtros.is_open ? subasta.isOpen : true
+    const matches_rating = Math.min(filtros.low_rating, 5) <= subasta.average_rating
 
-    return matchesNombre && matchesCategoria && matchesPrecio;
+    return matchesNombre && matchesCategoria && matchesPrecio && is_open && matches_rating ;
   });
 
   return (
@@ -122,6 +132,8 @@ const ListaSubastas = () => {
             className="inputs"
             type="number"
             name="minPrecio"
+            min={0}
+            max={filtros.maxPrecio}
             value={filtros.minPrecio === 0 ? "" : filtros.minPrecio}
             onChange={handleChange}
             placeholder="Precio mínimo"
@@ -130,10 +142,29 @@ const ListaSubastas = () => {
             className="inputs"
             type="number"
             name="maxPrecio"
+            min={filtros.minPrecio}
             value={filtros.maxPrecio === Infinity ? "" : filtros.maxPrecio}
             onChange={handleChange}
             placeholder="Precio máximo"
           />
+          <input
+            className="inputs"
+            type="number"
+            name="low_rating"
+            value={filtros.low_rating === 0 ? "" : filtros.low_rating}
+            onChange={handleChange}
+            placeholder="Rating mínimo"
+          />
+          <label>
+          <input
+              className="inputs"
+              type="checkbox"
+              name="is_open"
+              checked={filtros.is_open}
+              onChange={(e) => setFiltros({ ...filtros, is_open: e.target.checked })}
+            />
+          is_open
+          </label>
           <div>
             <h2>Categorías</h2>
             <select name="categoria" value={filtros.categoria} onChange={handleChange}>

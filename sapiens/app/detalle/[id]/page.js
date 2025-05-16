@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import { useParams } from "next/navigation";
 import "./styles.detalle.css";
 import Header from "../../../components/header/header";
@@ -74,16 +74,31 @@ const Detalle = () => {
 
     useEffect(() => {
         if (!id) return;
-
+        let url;
+        let headers;
+        if (user.token) {
+            url = `http://127.0.0.1:8000/api/auctions/subastas/${id}/modify/delete/`
+            headers = {
+                "Authorization": `Bearer ${localStorage.getItem("access_token")}`,
+                "Content-Type": "application/json"
+            }
+        }
+        else {
+            url = `http://127.0.0.1:8000/api/auctions/subastas/${id}`
+            headers = {
+                "Content-Type": "application/json"
+            }
+        }
         const fetchAuctionData = async () => {
-            const response = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}`, {
-                headers: {
-                    "Authorization": `Bearer ${localStorage.getItem("access_token")}`,
-                    "Content-Type": "application/json"
-                }
+            console.log("------------------------")
+            console.log(url)
+            const response = await fetch(url, {
+                headers: headers
             });
             const subasta = await response.json();
 
+            console.log("----------------")
+            console.log(subasta)
             if (subasta) {
                 setDetailData({
                     title: subasta.title,
@@ -148,6 +163,40 @@ const Detalle = () => {
 
         fetchPujas();
     }, [id, user?.token]);  // Se ejecuta cuando cambia id o el token
+
+    useEffect(() => {
+        const getRating = async () => {
+            try {
+                if (!id || !user?.token) {
+                    setNewRating("");
+                    return;
+                }
+
+                const response = await fetch(
+                    `http://127.0.0.1:8000/api/auctions/subastas/${id}/user/rate/`,
+                    {
+                        method: "GET",
+                        headers: {
+                            "Authorization": `Bearer ${user.token}`,
+                            "Content-Type": "application/json"
+                        }
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                setNewRating(data.value);
+                console.log(`data devuelta: ${data}`)
+            } catch (error) {
+                console.error("Error fetching bids:", error);
+                setNewRating("")
+            }
+        };
+
+        getRating()
+    }, [id, user?.token])
 
     const minPrice = () => detailData.minUp + detailData.price;
 
@@ -226,6 +275,7 @@ const Detalle = () => {
     };
 
 
+
     const handleRatingSubmit = async () => {
         if (!user || !user.token) {
             alert("Debes estar autenticado para valorar");
@@ -233,19 +283,34 @@ const Detalle = () => {
         }
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}/rate/`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${user.token}`,
-                },
-                body: JSON.stringify({ value: Number(newRating) }),
-            });
+            let response;
+            if (!newRating || newRating == 0) {
+                response = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}/rate/delete/`, {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${user.token}`,
+                        "Content-Type": "application/json"
+                    }
+                });
+                if (response.ok) {
+                    alert("Rating eliminado");
+                    setNewRating("");
+                }
+            } else {
+                response = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}/rate/`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${user.token}`,
+                    },
+                    body: JSON.stringify({ value: Math.round(Number(newRating)) }),
+                });
 
+                if (response.ok) {
+                    alert("¡Valoración enviada!");
+                }
+            }
             if (response.ok) {
-                alert("¡Valoración enviada!");
-                setNewRating("");
-
                 // Obtener promedio actualizado
                 const updatedAuction = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}`, {
                     headers: {
@@ -307,12 +372,17 @@ const Detalle = () => {
 
             {user && (
                 <div className="valoracion">
+                    <p>
+                        puede modificar la valoracion
+                        o dejarla en 0 o en blanco para eliminarla
+                    </p>
                     <label>Valora esta subasta (1 a 5):</label>
                     <input
                         type="number"
                         name="rating"
-                        min="1"
+                        min="0"
                         max="5"
+                        step="1"
                         value={newRating ?? ""}
                         onChange={handleChangeRatings}
                     />
