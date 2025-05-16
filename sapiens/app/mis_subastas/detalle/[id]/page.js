@@ -101,7 +101,7 @@ const Detalle = () => {
         if (!window.confirm("¿Estás seguro de que quieres eliminar esta subasta?")) return;
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}/`, {
+            const response = await fetch(`http://127.0.0.1:8000/api/auctions/subastas/${id}/modify/delete/`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
